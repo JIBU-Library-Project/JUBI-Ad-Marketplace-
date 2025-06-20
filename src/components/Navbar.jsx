@@ -1,87 +1,89 @@
-import React, { useState } from "react";
 import { FaUser, FaUserPlus, FaPlus } from "react-icons/fa";
-import SearchBar from "./SearchBar";
-import AuthToggle from "./auth/AuthToggle";
+import SearchBar from "./SearchBar"; // import the component
+import { useNavigate } from "react-router";
 
-const Navbar = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalTab, setModalTab] = useState("login"); // "login" or "register"
-
-  const openModal = (tab) => {
-    setModalTab(tab);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => setIsModalOpen(false);
+const Navbar = ({className="", isFixed = true }) => {
+  const navigate = useNavigate();
 
   return (
     <>
-      <header className="bg-teal-900 text-white pb-2 z-50 relative">
-        <nav className="max-w-8xl mx-auto px-4 py-3">
+      <div className={`${className} ${isFixed ? "fixed top-0 left-0 right-0" : ""} z-50 bg-white shadow-md `}>
+        <nav className=" lg:visible  flex  flex-col mx-auto px-4 py-3 bg-[#ffffff] shadow fixed w-full justify-center items-center border-b-[#08ae5e] border-b-2">
+        {/* Flex container for logo, search, buttons */}
+        <div className="flex justify-between flex-wrap gap-y-4">
+          {/* Logo Section */}
+         <button className="cursor-pointer"   onClick={() => navigate("/")}>
+           <div className="flex items-center space-x-2 flex-shrink-0">
+            <h1 className="text-xl font-bold text-[#08ae5e] pr-10
+            
+            ">Jubi</h1>
+          </div>
+         </button>
+
+          {/* Search Bar - Desktop */}
+          <div className="hidden lg:flex flex-1 mx-6 justify-center">
+            <SearchBar className="flex flex-wrap " />
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex pl-10 items-center gap-6  text-[#08ae5e] text-sm">
+            <button
+              onClick={() => navigate("/login")}
+              className=" border rounded-[10px] flex flex-col items-center hover:bg-[#1b1a0f]  hover:text-white p-1 pr-2 pl-2"
+            >
+              <span className="mt-1 flex gap-x-1 ">
+                {" "}
+                <FaPlus className="text-lg" />
+                Post Ad
+              </span>
+            </button>
+
+            <button className="flex flex-col items-center hover:opacity-70">
+              {/* <FaUser className="text-lg" /> */}
+              <span className=" bg-[#08ae5e]  p-2 rounded-[10px]  text-white mt-1">
+                Login/Register
+              </span>
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <nav>
+        <nav className="lg:hidden md:visible xm:visible flex-col flex-wrap mx-auto px-4 py-3 bg-[#fff] shadow fixed w-full justify-center items-center">
+          {/* Flex container for logo, search, buttons */}
           <div className="flex justify-between flex-wrap gap-y-4">
             {/* Logo Section */}
             <div className="flex items-center space-x-2 flex-shrink-0">
-              <div className="bg-green-500 w-6 h-6 rounded-full"></div>
-              <h1 className="text-xl font-bold">Jubi</h1>
+              <h1 className="text-xl font-bold text-[#08ae5e] ">Jubi</h1>
             </div>
 
-            {/* Desktop Search Bar */}
+            {/* Search Bar - Desktop */}
             <div className="hidden lg:flex flex-1 mx-6 justify-center">
-              <SearchBar className="pr-90 pl-90" />
+              <SearchBar className="pl-80 pr-80" />
             </div>
 
             {/* Action Buttons */}
-            <div className="flex items-center gap-6 text-sm">
-              <button
-                className="flex flex-col items-center hover:opacity-80"
-                onClick={() => openModal("login")}
-              >
+            <div className="flex items-center gap-6  text-[#08ae5e] text-sm">
+              <button className=" bg-[] flex flex-col items-center hover:opacity-80 p-1">
                 <FaPlus className="text-lg" />
-                <span className="mt-1">Post an ad</span>
+                <span className="mt-1">Post Ad</span>
               </button>
-
               <button
                 className="flex flex-col items-center hover:opacity-80"
-                onClick={() => openModal("register")}
+                onClick={() => navigate("/login")}
               >
                 <FaUserPlus className="text-lg" />
-                <span className="mt-1">Sign up</span>
-              </button>
-
-              <button
-                className="flex flex-col items-center hover:opacity-80"
-                onClick={() => openModal("login")}
-              >
-                <FaUser className="text-lg" />
-                <span className="mt-1">Login</span>
+                <span className="mt-1">Loging/Register</span>
               </button>
             </div>
           </div>
-        </nav>
 
-        {/* Mobile Search Bar */}
-        <div className="lg:hidden">
-          <SearchBar className="p-2" />
-        </div>
-      </header>
-
-      {/* Modal with AuthToggle */}
-      {isModalOpen && (
-        <div className="fixed inset-0 z-50 bg bg-opacity-60 flex items-center justify-center">
-          <div className="mt-30 border border-red-500 mb-10 bg rounded-lg shadow-xl w-full max-w-2xl mx-4 relative backdrop-blur-3xl bg-[#fff] /80 ">
-            {/* Close Button */}
-            <button
-              onClick={closeModal}
-              className="absolute top-5 right-5 text-gray-500 hover:text-gray-800 text-xl"
-            >
-              &times;
-            </button>
-
-            {/* AuthToggle with default tab passed */}
-            <AuthToggle defaultTab={modalTab} />
+          <div className="lg:hidden">
+            <SearchBar className="" />
           </div>
-        </div>
-      )}
+        </nav>
+      </nav>
+      </div>
     </>
   );
 };
