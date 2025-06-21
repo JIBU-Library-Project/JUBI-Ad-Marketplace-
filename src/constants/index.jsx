@@ -17,21 +17,7 @@ const K = {
       text: "Create Advert",
       path: "/dashboard/create-ad",
     },
-     {
-      icon: <FaHome />,
-      text: "Create Advert",
-      path: "/dashboard/create-ad",
-    },
-     {
-      icon: <FaHome />,
-      text: "Create Advert",
-      path: "/dashboard/create-ad",
-    },
-     {
-      icon: <FaHome />,
-      text: "Create Advert",
-      path: "/dashboard/create-ad",
-    },
+     
   ],
 };
 

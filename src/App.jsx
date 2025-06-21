@@ -13,6 +13,7 @@ import DashboardLayout from "./layouts/DashboardLayout";
 import VenderOverview from "./pages/vendor/VenderOverview";
 import VendorAds from "./pages/vendor/VendorAds";
 import CreateAd from "./pages/vendor/CreateAd";
+import UserHomePage from "./pages/protectedpages/UserHomePage";
 
 function App() {
   const router = createBrowserRouter([
@@ -32,7 +33,12 @@ function App() {
       path: "/category/:categoryName",
       element: <CategoryAdsPage />,
     },
+
     {
+      path: "/userHomepage",
+      element: <UserHomePage/>
+    },
+     {
       path: "/login",
       element: <LoginPage />,
     },

@@ -2,7 +2,7 @@ import React from 'react'
 
 const VenderOverview = () => {
   return (
-    <div className='mt-20'>VenderOverview</div>
+    <div className='md:ml-64 ml-0 pt-16 px-4'>VenderOverview</div>
   )
 }
 

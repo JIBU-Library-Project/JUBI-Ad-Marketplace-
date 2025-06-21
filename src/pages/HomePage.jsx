@@ -3,8 +3,7 @@ import Navbar from "../components/Navbar";
 import AdImageCarousel from "../components/SIngleCompos/AdImageCarousel";
 import { useNavigate } from "react-router";
 import SlidingHeadLine from "../components/SIngleCompos/SlidingHeadline";
-import CategoryAdsPage from "./CategoryAdsPage";
-import CategoryBar from "../components/CategoryBar";
+
 
 function HomePage() {
   const navigate = useNavigate();
@@ -13,7 +12,8 @@ function HomePage() {
       <div>
         <Navbar />
 
-        <div className="bg-[#045f44] h-[55vh] min-h-[420px] pt-30 flex items-center justify-center w-screen px-4 py-12 introheader">
+        <div>
+          <div className="bg-[#045f44] h-[55vh] min-h-[420px] pt-30 flex items-center justify-center w-screen px-4 py-12 introheader">
           <div className="text-center text-white space-y-4">
             <h1 className="text-4xl md:text-6xl  lg:text-8xl font-extrabold leading-tight">
               The Smarter Way <br />
@@ -21,9 +21,7 @@ function HomePage() {
             </h1>
 
             <SlidingHeadLine />
-            {/* <p className="text-white text-3xl italic font-semibold tracking-wider">
-      <em className="text-yellow-400">Think Ad,</em> Just Post It
-    </p> */}
+      
 
             <button
               className="mt-4 px-6 py-2 bg-pink-600 text-white rounded-full font-semibold text-sm hover:bg-pink-700 transition"
@@ -35,6 +33,7 @@ function HomePage() {
         </div>
 
         <AdImageCarousel />
+        </div>
       </div>
     </>
   );
