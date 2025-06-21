@@ -2,7 +2,7 @@ import React from 'react'
 
 function VendorAds() {
   return (
-    <div>VendorAds</div>
+    <div className='mt-20'>VendorAds</div>
   )
 }
 

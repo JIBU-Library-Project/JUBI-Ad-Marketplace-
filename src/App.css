@@ -1,3 +1,22 @@
 *{
-  font-family: "epilogue";
+  /* font-family: "epilogue"; */
+  /* font-family: 'Urbanist', sans-serif; */
+  font-family: 'Rubik', sans-serif;
+   /* font-family: 'Work Sans', sans-serif; */
+}
+
+.loginpage {
+  background-image: url('../src/assets/loginbg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+}
+
+.introheader {
+   background-image: url('../src/assets/introimg1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
 }

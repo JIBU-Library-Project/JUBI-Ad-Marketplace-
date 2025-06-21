@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
+
 function AuthToggle({ className = "" }) {
+ 
   const [activeTab, setActiveTab] = useState("login");
   const [rememberMe, setRememberMe] = useState(false);
   const [accountType, setAccountType] = useState("user");
@@ -14,10 +16,13 @@ function AuthToggle({ className = "" }) {
     alert("Form Submitted Successfully");
   };
 
+
+  
+
   return (
-    <div className="min-h-screen w-screen bg-amber-400 flex items-center justify-center px-4 py-10 overflow-y-auto">
+    <div className="min-h-screen w-screen //bg-[#f4f4f4] //bg-amber-400 flex items-center justify-center px-4 py-10 overflow-y-auto login-background loginpage">
       <div
-        className={`w-full max-w-xl bg-amber-50 p-6 rounded-xl shadow-md ${className}`}
+        className={`w-full max-w-xl //bg-white  p-6 rounded-xl shadow-md ${className} backdrop-blur-3xl outline outline-amber-50 bg-[#ffffff]/80`}
       >
         {/* Tabs */}
         <div className="flex border-b border-gray-200 mb-6">
@@ -153,7 +158,12 @@ function AuthToggle({ className = "" }) {
                       id="first-name"
                       placeholder="Babs"
                     />
-                    <Input label="Last Name" id="last-name" placeholder="Doe" className="bg-[#08ae5e]/25" />
+                    <Input
+                      label="Last Name"
+                      id="last-name"
+                      placeholder="Doe"
+                      className="bg-[#08ae5e]/25"
+                    />
                   </div>
                   <Input
                     label="Username"

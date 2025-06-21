@@ -1,6 +1,6 @@
 import React from 'react'
 
-function CategoryBar() {
+const CategoryBar = () => {
   return (
     <div>CategoryBar</div>
   )
