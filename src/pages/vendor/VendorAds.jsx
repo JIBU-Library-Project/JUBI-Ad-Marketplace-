@@ -2,7 +2,7 @@ import React from 'react'
 
 function VendorAds() {
   return (
-    <div>VendorAds</div>
+    <div className='md:ml-64 ml-0 pt-16 px-4'>VendorAds</div>
   )
 }
 

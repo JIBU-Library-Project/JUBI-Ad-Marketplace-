@@ -2,7 +2,7 @@ import React from 'react'
 
 const CreateAd = () => {
   return (
-    <div>CreateAd</div>
+    <div className='md:ml-64 ml-0 pt-16 px-4'>CreateAd</div>
   )
 }
 

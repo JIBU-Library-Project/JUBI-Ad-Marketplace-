@@ -6,14 +6,14 @@ import HomePage from "./pages/HomePage";
 import AdsPage from "./pages/AdsPage";
 import AdDetailPage from "./pages/AdDetailPage";
 import CategoryAdsPage from "./pages/CategoryAdsPage";
-import LoginPage from "./pages/LoginPage";
-import SignUpPage from "./pages/SignUpPage";
+import LoginPage from "./components/auth/LoginPage";
 
 // Vendor Dashboard Layout & Pages
 import DashboardLayout from "./layouts/DashboardLayout";
 import VenderOverview from "./pages/vendor/VenderOverview";
 import VendorAds from "./pages/vendor/VendorAds";
 import CreateAd from "./pages/vendor/CreateAd";
+import UserHomePage from "./pages/protectedpages/UserHomePage";
 
 function App() {
   const router = createBrowserRouter([
@@ -33,13 +33,14 @@ function App() {
       path: "/category/:categoryName",
       element: <CategoryAdsPage />,
     },
+
     {
+      path: "/userHomepage",
+      element: <UserHomePage/>
+    },
+     {
       path: "/login",
       element: <LoginPage />,
-    },
-    {
-      path: "/signup",
-      element: <SignUpPage />,
     },
     {
       path: "/dashboard",
