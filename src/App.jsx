@@ -3,7 +3,7 @@ import "./App.css";
 
 // General Pages
 import HomePage from "./pages/HomePage";
-import AdsPage from "./pages/AdsPage";
+
 import AdDetailPage from "./pages/AdDetailPage";
 import CategoryAdsPage from "./pages/CategoryAdsPage";
 import LoginPage from "./components/auth/LoginPage";
@@ -11,9 +11,14 @@ import LoginPage from "./components/auth/LoginPage";
 // Vendor Dashboard Layout & Pages
 import DashboardLayout from "./layouts/DashboardLayout";
 import VenderOverview from "./pages/vendor/VenderOverview";
-import VendorAds from "./pages/vendor/VendorAds";
+
 import CreateAd from "./pages/vendor/CreateAd";
 import UserHomePage from "./pages/protectedpages/UserHomePage";
+import VendorAdsPage from "./pages/vendor/VendorAdsPage";
+import AllAdsPage from "./pages/AllAdsPage";
+import VendorPublicAdsPage from "./pages/VendorPublicAdsPage";
+import EditAddPage from "./pages/vendor/EditAddPage";
+import VendorAdDetailPage from "./pages/vendor/VendorAdDetailPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -23,7 +28,7 @@ function App() {
     },
     {
       path: "/ads",
-      element: <AdsPage />,
+      element: <AllAdsPage />,
     },
     {
       path: "/ads/:id",
@@ -35,12 +40,20 @@ function App() {
     },
 
     {
-      path: "/userHomepage",
-      element: <UserHomePage/>
+      path: "/user-homepage",
+      element: <UserHomePage />,
     },
-     {
+    {
       path: "/login",
       element: <LoginPage />,
+    },
+    {
+      path: "vendor/:vendorId/ads",
+      element: <VendorPublicAdsPage />,
+    },
+    {
+      path: "/vendor/ads/:id",
+      element: <VendorAdDetailPage />,
     },
     {
       path: "/dashboard",
@@ -51,12 +64,16 @@ function App() {
           element: <VenderOverview />,
         },
         {
-          path: "adverts",
-          element: <VendorAds />,
+          path: "my-ads",
+          element: <VendorAdsPage />,
         },
         {
           path: "create-ad",
-          element: <CreateAd isEdit={false} />,
+          element: <CreateAd />,
+        },
+        {
+          path: "ads/:id/edit",
+          element: <EditAddPage />,
         },
       ],
     },
