@@ -41,6 +41,14 @@ const UserNavbar = ({ className = "" }) => {
           <span className="flex items-center gap-1 bg-[#08ae5e] text-white py-1.5 px-3 rounded-full whitespace-nowrap">
             <FaUser />
             Hi, {username}
+
+             <button
+           onClick={() => navigate("/Ads")}
+            className="flex items-center gap-1  ml-3 bg-white text-gray-700 px-3 py-1.5 rounded-full hover:opacity-80 whitespace-nowrap"
+          >
+            {/* <FaSignOutAlt /> */}
+            View Ads
+          </button>
           </span>
           <button
             onClick={handleLogout}

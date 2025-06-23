@@ -188,11 +188,6 @@ function AuthToggle({ className = "" }) {
                     placeholder="Accra, Ghana"
                   />
                 </div>
-                <Input
-                  label="WhatsApp URL"
-                  id="whatsapp"
-                  placeholder="https://wa.me/233500000000"
-                />
               </>
             )}
 
