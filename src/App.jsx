@@ -40,7 +40,7 @@ function App() {
     },
 
     {
-      path: "/userHomepage",
+      path: "/user-homepage",
       element: <UserHomePage />,
     },
     {

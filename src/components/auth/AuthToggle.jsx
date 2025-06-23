@@ -40,7 +40,7 @@ function AuthToggle({ className = "" }) {
     alert("Account created successfully!");
 
     // Redirect
-    navigate(accountType === "vendor" ? "/dashboard" : "/userHomepage");
+    navigate(accountType === "vendor" ? "/dashboard" : "/user-homepage");
   };
 
   const handleLoginSubmit = (e) => {
@@ -52,7 +52,7 @@ function AuthToggle({ className = "" }) {
 
     if (auth && storedUsername && role) {
       login(storedUsername, role);
-      navigate(role === "vendor" ? "/dashboard" : "/userHomepage");
+      navigate(role === "vendor" ? "/dashboard" : "/user-homepage");
     } else {
       alert("Invalid login! Please register first.");
     }
