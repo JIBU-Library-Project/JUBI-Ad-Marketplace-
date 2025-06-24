@@ -10,8 +10,8 @@ export const dummyAds = [
       "https://i.pinimg.com/736x/7f/05/f8/7f05f8890592d8afacc887c51feed5f8.jpg"
     ],
     vendor: {
-      id: "vendor001",
-      name: "Gadget World",
+      id: "6859f9886f903e90d33f3158",
+      companyName: "Vendor001",
       location: "Accra",
       phone: "0244123456",
       whatsapp: "https://wa.me/233244123456"
@@ -36,8 +36,8 @@ export const dummyAds = [
       "https://i.pinimg.com/736x/7e/af/ff/7eafffbd7f3b2ba3cf8ec3d5e833aaae.jpg"
     ],
     vendor: {
-      id: "vendor001",
-      name: "Gadget World",
+      id: "6859f9886f903e90d33f3158",
+      companyName: "Vendor001",
       location: "Accra",
       phone: "0244123456",
       whatsapp: "https://wa.me/233244123456"
@@ -61,11 +61,11 @@ export const dummyAds = [
       "https://i.pinimg.com/736x/06/2b/e0/062be0d1d1ef61e4a25d91dd47d9cd91.jpg"
     ],
     vendor: {
-      id: "vendor002",
-      name: "Laptop Lounge",
-      location: "Tema",
-      phone: "0501234567",
-      whatsapp: "https://wa.me/233501234567"
+      id: "6859f9886f903e90d33f3158",
+      companyName: "Vendor001",
+      location: "Accra",
+      phone: "0244123456",
+      whatsapp: "https://wa.me/233244123456"
     },
     metadata: {
       brand: "HP",
@@ -86,11 +86,11 @@ export const dummyAds = [
       "https://i.pinimg.com/736x/cf/91/03/cf9103b8d6ef6ab6e0572c360b0ae131.jpg"
     ],
     vendor: {
-      id: "vendor004",
-      name: "Dapper Wear",
-      location: "Osu",
-      phone: "0267778888",
-      whatsapp: "https://wa.me/233267778888"
+      id: "6859f9886f903e90d33f3158",
+      companyName: "Vendor001",
+      location: "Accra",
+      phone: "0244123456",
+      whatsapp: "https://wa.me/233244123456"
     },
     metadata: {
       type: "Men's Suit",
@@ -111,11 +111,11 @@ export const dummyAds = [
       "https://i.pinimg.com/736x/e5/47/97/e547970e9898a3fcbd9f958db77208bb.jpg"
     ],
     vendor: {
-      id: "vendor004",
-      name: "Dapper Wear",
-      location: "Osu",
-      phone: "0267778888",
-      whatsapp: "https://wa.me/233267778888"
+      id: "6859f9886f903e90d33f3158",
+      companyName: "Vendor001",
+      location: "Accra",
+      phone: "0244123456",
+      whatsapp: "https://wa.me/233244123456"
     },
     metadata: {
       type: "Dress",
@@ -137,11 +137,11 @@ export const dummyAds = [
       "https://i.pinimg.com/736x/61/bd/88/61bd88c8c6d8e6c41a9f7fc3f0f7e5a9.jpg"
     ],
     vendor: {
-      id: "vendor003",
-      name: "FreshFarm GH",
-      location: "Techiman",
-      phone: "0541122334",
-      whatsapp: "https://wa.me/233541122334"
+      id: "6859f9886f903e90d33f3158",
+      companyName: "Vendor001",
+      location: "Accra",
+      phone: "0244123456",
+      whatsapp: "https://wa.me/233244123456"
     },
     metadata: {
       type: "Vegetable",
@@ -159,15 +159,15 @@ export const dummyAds = [
     price: 350,
     category: "Food & Groceries",
     images: [
-      "https://i.pinimg.com/736x/f2/2e/ff/f22efffdd27ff5147c9eebf899d9f65d.jpg",
-      "https://i.pinimg.com/736x/93/b7/44/93b74412eab2c11f96490ad0de06a983.jpg"
+      "https://i.pinimg.com/736x/c6/6c/86/c66c86ba6fc4dc93a90f48ac2242db0b.jpg",
+      "https://i.pinimg.com/736x/c8/6d/e8/c86de8b6a83054a263fbe5169ea374cc.jpg"
     ],
     vendor: {
-      id: "vendor003",
-      name: "FreshFarm GH",
-      location: "Techiman",
-      phone: "0541122334",
-      whatsapp: "https://wa.me/233541122334"
+      id: "6859f9886f903e90d33f3158",
+      companyName: "Vendor001",
+      location: "Accra",
+      phone: "0244123456",
+      whatsapp: "https://wa.me/233244123456"
     },
     metadata: {
       type: "Grain",

@@ -17,6 +17,7 @@ function HomePage() {
     <>
       <div>
         <Navbar />
+        
 
         <div>
           <div className="bg-[#045f44] h-[55vh] min-h-[420px] pt-30 flex items-center justify-center w-screen px-4 py-12 introheader">

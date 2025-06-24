@@ -8,7 +8,7 @@ const VendorProfileCard = ({ vendor }) => {
 
   return (
     <div className="border p-4 rounded shadow-md w-full max-w-sm">
-      <h2 className="font-bold text-lg mb-2">Posted by: {vendor.name}</h2>
+      <h2 className="font-bold text-lg mb-2">Posted by: {vendor.companyName}</h2>
       <p className="text-sm text-gray-700">Location: {vendor.location}</p>
       <p className="text-sm text-gray-700">Phone: {vendor.phone}</p>
       <button
