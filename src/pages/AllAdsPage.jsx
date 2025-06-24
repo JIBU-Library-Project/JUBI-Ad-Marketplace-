@@ -3,6 +3,7 @@ import AdCard from "../components/AdCard";
 import { dummyAds } from "../data/DummyAds";
 import SafetyTipsCard from "../components/SafetyTipsCard";
 import OwnerAds from "../components/SIngleCompos/OwnerAds";
+import NavigationBar from "../components/NavigationBar";
 
 const categories = ["Electronics", "Real Estate", "Food & Groceries", "Fashion"];
 
@@ -23,7 +24,10 @@ function AllAdsPage() {
   });
 
   return (
-    <div className="max-w-[80vw] mx-auto py-10 px-4">
+   <div>
+
+    <NavigationBar/>
+     <div className="max-w-[80vw] mx-auto py-10 px-4 pt-45 ">
       <h1 className="text-2xl font-bold mb-8">Browse All Ads</h1>
 
       <div className="flex flex-col md:flex-row gap-8">
@@ -102,6 +106,7 @@ function AllAdsPage() {
         </div>
       </div>
     </div>
+   </div>
   );
 }
 

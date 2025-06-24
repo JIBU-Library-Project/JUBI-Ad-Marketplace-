@@ -51,10 +51,7 @@ function App() {
       path: "vendor/:vendorId/ads",
       element: <VendorPublicAdsPage />,
     },
-    {
-      path: "/vendor/ads/:id",
-      element: <VendorAdDetailPage />,
-    },
+
     {
       path: "/dashboard",
       element: <DashboardLayout />,
@@ -74,6 +71,10 @@ function App() {
         {
           path: "ads/:id/edit",
           element: <EditAddPage />,
+        },
+        {
+          path: "ads/:id",
+          element: <VendorAdDetailPage />,
         },
       ],
     },

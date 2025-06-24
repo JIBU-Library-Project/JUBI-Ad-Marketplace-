@@ -1,24 +1,16 @@
 import { FaSignOutAlt, FaUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
 import logo from "../../assets/jubimarklogo.png";
 import SearchBar from "../SearchBar";
 
+
 const UserNavbar = ({ className = "" }) => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
-
-  useEffect(() => {
-    const user = localStorage.getItem("username");
-    if (user) setUsername(user);
-  }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("auth");
-    localStorage.removeItem("username");
-    localStorage.removeItem("role");
+  localStorage.removeItem("accessToken")
     alert("You've logged out successfully");
-    navigate("/");
+    navigate("/login");
   };
 
   return (
@@ -40,21 +32,20 @@ const UserNavbar = ({ className = "" }) => {
         <div className="flex items-center justify-end gap-3 text-sm text-[#08ae5e] mt-2 lg:mt-0">
           <span className="flex items-center gap-1 bg-[#08ae5e] text-white py-1.5 px-3 rounded-full whitespace-nowrap">
             <FaUser />
-            Hi, {username}
+            Hi, { "Username"}
 
-             <button
-           onClick={() => navigate("/Ads")}
-            className="flex items-center gap-1  ml-3 bg-white text-gray-700 px-3 py-1.5 rounded-full hover:opacity-80 whitespace-nowrap"
-          >
-            {/* <FaSignOutAlt /> */}
-            View Ads
-          </button>
+            <button
+              onClick={() => navigate("/Ads")}
+              className="flex items-center gap-1 ml-3 bg-white text-gray-700 px-3 py-1.5 rounded-full hover:opacity-80 whitespace-nowrap"
+            >
+              View Ads
+            </button>
           </span>
+
           <button
             onClick={handleLogout}
             className="flex items-center gap-1 bg-red-600 text-white px-3 py-1.5 rounded-full hover:opacity-80 whitespace-nowrap"
           >
-            {/* <FaSignOutAlt /> */}
             Logout
           </button>
         </div>

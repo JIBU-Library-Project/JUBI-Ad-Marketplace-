@@ -19,16 +19,15 @@ function AdDetailPage() {
     title,
     description,
     price,
-    category,
+
     images,
     vendor,
     metadata,
-    createdAt,
   } = ad;
 
   return (
     <div>
-      <NavigationBar/>
+      <NavigationBar />
       <div className="max-w-7xl mx-auto px-4 py-10 pt-40">
         <div className="flex flex-col lg:flex-row gap-10">
           {/* LEFT: Main content */}
@@ -45,7 +44,7 @@ function AdDetailPage() {
             </div>
 
             <div className="rounded overflow-hidden border mb-6">
-              <CarouselForAds images={images}  />
+              <CarouselForAds images={images} />
             </div>
 
             <div className="space-y-4">
@@ -112,15 +111,14 @@ function AdDetailPage() {
             </div>
 
             <div className="flex gap-4 pt-3 border-t border-gray-400">
-                     <button className="text-sm text-gray-700 ">⚠️ Report</button>
+              <button className="text-sm text-gray-700 ">⚠️ Report</button>
             </div>
             <hr className="text-gray-400" />
             <SafetyTipsCard />
           </div>
         </div>
-        
-          </div>
-            <Footer/>
+      </div>
+      <Footer />
     </div>
   );
 }

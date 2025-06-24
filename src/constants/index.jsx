@@ -17,13 +17,15 @@ const K = {
       text: "Create Advert",
       path: "/dashboard/create-ad",
     },
-     {
+    {
       icon: <FaHome />,
       text: "Edit Ad",
       path: "/dashboard/ads/:id/edit",
     },
-     
-     
+
+    {
+      path: "/dashboard/ads/:id",
+    },
   ],
 };
 

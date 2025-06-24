@@ -1,8 +1,24 @@
+import { useEffect } from "react";
 import UserNavbar from "../../components/Protected/UserNavbar";
 import AdImageCarouselUsers from "../../components/SIngleCompos/AdImageCarouselUsers";
 import SlidingHeadline from "../../components/SIngleCompos/SlidingHeadline";
+import { useNavigate } from "react-router";
 
 const UserHomePage = () => {
+
+  const navigate = useNavigate
+
+ useEffect(() => {
+  //retrieve token from local storage
+      const token = localStorage.getItem("accessToken");
+  
+      // if no token, navigate to login
+      if (!token) {
+        navigate("/");
+      }  
+ },[])
+
+
   return (
     <div className="w-screen">
       <UserNavbar />
