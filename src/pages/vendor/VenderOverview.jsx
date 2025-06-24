@@ -1,16 +1,12 @@
 // src/pages/vendor/VendorOverview.jsx
 import React from "react";
 import { dummyAds } from "../../data/DummyAds";
-
 import { Link } from "react-router-dom";
-
 function VendorOverview() {
-
-
+  
   // Filter ads by actual vendor ID
   const myAds = dummyAds.filter((ad) => ad.vendor.id === "vendorId");
   const latestAd = myAds[0];
-
   return (
     <div className="md:ml-64 ml-0 pt-16 px-4 max-w-6xl mx-auto py-10">
       <h1 className="text-2xl font-bold mb-6 text-gray-800">
@@ -85,6 +81,7 @@ function VendorOverview() {
       </div>
     </div>
   );
+
 }
 
 export default VendorOverview;
