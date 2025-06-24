@@ -1,0 +1,65 @@
+import React from "react";
+import { useNavigate } from "react-router-dom";
+
+const DynamicAdCard = ({ ad, isVendor = false }) => {
+  const navigate = useNavigate();
+
+  const handleViewDetails = () => {
+    navigate(`/ads/${ad.id}`);
+  };
+
+  const handleEdit = () => {
+    navigate(`/dashboard/ads/${ad.id}/edit`);
+  };
+
+  const handleDelete = () => {
+    // Dummy delete logic, ideally hook to API
+    alert("Ad deleted: " + ad.title);
+  };
+
+  const firstImage = ad.images?.[0] || "https://via.placeholder.com/300x200";
+
+  return (
+    <div className="bg-white border rounded-lg shadow hover:shadow-md transition-all overflow-hidden">
+      <img src={firstImage} alt={ad.title} className="w-full h-48 object-cover" />
+
+      <div className="p-4">
+        <h2 className="text-lg font-semibold text-gray-800">{ad.title}</h2>
+        <p className="text-amber-600 font-bold text-md">GHS {ad.price}</p>
+        <p className="text-sm text-gray-500">Category: {ad.category}</p>
+        <p className="text-sm text-gray-600">Posted by: {ad.vendor.name}</p>
+        <p className="text-xs text-gray-400 mt-1">
+          {new Date(ad.createdAt).toLocaleDateString()}
+        </p>
+
+        <div className="mt-3 flex gap-2">
+          <button
+            onClick={handleViewDetails}
+            className="bg-blue-500 text-white text-sm px-3 py-1 rounded hover:bg-blue-600"
+          >
+            View Details
+          </button>
+
+          {isVendor && (
+            <>
+              <button
+                onClick={handleEdit}
+                className="bg-yellow-400 text-white text-sm px-3 py-1 rounded hover:bg-yellow-500"
+              >
+                Edit
+              </button>
+              <button
+                onClick={handleDelete}
+                className="bg-red-500 text-white text-sm px-3 py-1 rounded hover:bg-red-600"
+              >
+                Delete
+              </button>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default DynamicAdCard;

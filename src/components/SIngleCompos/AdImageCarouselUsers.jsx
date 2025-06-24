@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import Phone1 from "../../assets/ad1.jpg";
 import Phone2 from "../../assets/ad2.jpg";
 import Phone3 from "../../assets/ad3.jpg";
-import SearchBar from "../SearchBar";
-import { useNavigate } from "react-router";
+import { Navigate, useNavigate } from "react-router";
 
-const AdImageCarousel = () => {
+const AdImageCarouselUsers = () => {
   const navigate = useNavigate();
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const phoneImages = [Phone1, Phone2, Phone3, Phone2];
 
@@ -20,9 +20,6 @@ const AdImageCarousel = () => {
   }, [phoneImages.length]);
 
 
-  const handleViewMore = () => {alert("Log in or Create a Vendor Account to Post")
-  navigate('/login')
-}
 
   return (
     <div className="bg-[#ffffff] w-full -mt- h-[#50vh] flex items-center justify-center px-4 md:px-12 py-16">
@@ -39,13 +36,11 @@ const AdImageCarousel = () => {
           </p>
 
           <div className="flex gap-x-2  ">
-            <SearchBar className="bg-[#111c24] p-4 w-full max-w-md  mx-auto md:mx-0  " />
-
             <button
-              className="flex justify-center items-center bg-amber-300 pr-4 pl-4 rounded-[8px] hover:cursor-pointer "
-              onClick={handleViewMore}
+              className="flex justify-center items-center bg-green-700 text-white pr-4 pl-4 p-4 rounded-[8px] w-full hover:cursor-pointer "
+              onClick={() => navigate("/ads")}
             >
-              Post Ad
+              See All Ads
             </button>
           </div>
 
@@ -76,4 +71,4 @@ const AdImageCarousel = () => {
   );
 };
 
-export default AdImageCarousel;
+export default AdImageCarouselUsers;

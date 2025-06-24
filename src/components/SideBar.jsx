@@ -9,11 +9,9 @@ function SideBar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleLogout = () => {
-    localStorage.removeItem("auth");
-    localStorage.removeItem("username");
-    localStorage.removeItem("role");
+    localStorage.removeItem("accessToken")
     alert("Logged out successfully!");
-    navigate("/");
+    navigate("/login");
   };
 
   const toggleMenu = () => setIsOpen(!isOpen);

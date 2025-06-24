@@ -10,14 +10,22 @@ const K = {
     {
       icon: <FaHome />,
       text: "All Adverts",
-      path: "/dashboard/adverts",
+      path: "/dashboard/my-ads",
     },
     {
       icon: <FaHome />,
       text: "Create Advert",
       path: "/dashboard/create-ad",
     },
-     
+    {
+      icon: <FaHome />,
+      text: "Edit Ad",
+      path: "/dashboard/ads/:id/edit",
+    },
+
+    {
+      path: "/dashboard/ads/:id",
+    },
   ],
 };
 

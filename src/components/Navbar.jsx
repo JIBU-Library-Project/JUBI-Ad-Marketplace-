@@ -49,14 +49,15 @@ const Navbar = ({ className = "", isFixed = true }) => {
                 </button>
               </>
 
-              <button
+              {/* <button
                 className="flex flex-col items-center hover:opacity-70"
                 onClick={() => navigate("/ads")}
               >
                 <span className="bg-[#08ae5e] p-2 rounded-[10px] text-white mt-1">
                   Ads
                 </span>
-              </button>
+              </button> */}
+
             </div>
           </div>
         </nav>

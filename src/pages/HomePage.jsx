@@ -7,14 +7,42 @@ import { GiClothes } from "react-icons/gi";
 import { FaHouse } from "react-icons/fa6";
 import { MdOutlineFastfood } from "react-icons/md";
 import { CiSearch } from "react-icons/ci";
+import SlidingHeadLine from "../components/SIngleCompos/SlidingHeadline";
+import NonUserAds from "./NonUserAds";
+import Footer from "../components/Footer";
+
 
 function HomePage() {
+
+
+  const handleViewMore = () => {alert("Log in or Create a Vendor Account to Start Advertising")
+  navigate('/login')
+}
   const navigate = useNavigate();
   return (
     <>
       <Navbar />
       <div>
-        <div className="mt-20">
+         <div>
+          <div className="bg-[#045f44] h-[55vh] min-h-[420px] pt-30 flex items-center justify-center w-screen px-4 py-12 introheader">
+            <div className="text-center text-white space-y-4">
+              <h1 className="text-4xl md:text-6xl  lg:text-8xl font-extrabold leading-tight">
+                The Smarter Way <br />
+                to Get <em className="text-yellow-400">Noticed.</em>
+              </h1>
+
+              <SlidingHeadLine />
+
+              <button
+                className="mt-4 px-6 py-2 bg-pink-600 text-white rounded-full font-semibold text-sm hover:bg-pink-700 transition"
+                onClick={handleViewMore}
+              >
+                Start Advertising
+              </button>
+            </div>
+          </div>
+
+<div className="mt-20">
           <nav className="flex items-center justify-between border border-white m-8 bg-white px-6 py-3 rounded-full shadow-md text-gray-900">
             {/* <span className="text-4xl">JUBI</span> */}
 
@@ -54,36 +82,14 @@ function HomePage() {
           playsInline
         />
       </div>
-
-
-      <div className="flex justify-center text-center hover:text-green hover:text-green-600 font-bold ">
-       <button onClick={() => navigate("/login")}>Advertisement</button>
-      </div>
-
-      <AdImageCarousel/>
-
-        {/* <div>
-          <div className="bg-[#045f44] h-[55vh] min-h-[420px] pt-30 flex items-center justify-center w-screen px-4 py-12 introheader">
-          <div className="text-center text-white space-y-4">
-            <h1 className="text-4xl md:text-6xl  lg:text-8xl font-extrabold leading-tight">
-              The Smarter Way <br />
-              to Get <em className="text-yellow-400">Noticed.</em>
-            </h1>
-
-            <SlidingHeadLine />
-      
-
-            <button
-              className="mt-4 px-6 py-2 bg-pink-600 text-white rounded-full font-semibold text-sm hover:bg-pink-700 transition"
-              onClick={() => navigate("/login")}
-            >
-              Start Advertising
-            </button>
+          <AdImageCarousel />
+          <div className="bg-[#ffffff] ">
+            <NonUserAds />
+             <Footer/>
           </div>
+          
         </div>
 
-        <AdImageCarousel />
-        // </div> */}
       </div>
     </>
   );

@@ -1,62 +1,112 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../SIngleCompos/authContext/AuthContext";
+import { toast } from "react-toastify";
+import { useForm } from "react-hook-form";
+import { apiLogin, apiSignup } from "../../services/auth";
+import { useNavigate } from "react-router";
+
+
+
 
 function AuthToggle({ className = "" }) {
   const [activeTab, setActiveTab] = useState("login");
   const [rememberMe, setRememberMe] = useState(false);
-  const [accountType, setAccountType] = useState("user");
-
-  const { login } = useAuth();
+  const [accountType, setAccountType] = useState("");
+  const [isSubmitting, setisSubmitting] = useState(false);
+  const [isloggin, setisLogging] = useState(false);
   const navigate = useNavigate();
+
+
+
 
   const handleInputChange = (e) => {
     setAccountType(e.target.value);
   };
 
-  const handleRegisterSubmit = (e) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  console.log(errors);
 
-    // Collect relevant data from form inputs
-    const form = new FormData(e.target);
-    const username =
-      accountType === "vendor"
-        ? form.get("company-name")
-        : form.get("username");
 
-    if (!username) {
-      alert("Please fill in all required fields.");
-      return;
-    }
 
-    // Save to localStorage
-    localStorage.setItem("role", accountType);
-    localStorage.setItem("auth", "true");
-    localStorage.setItem("username", username);
-
-    // Call context login
-    login(username, accountType);
-
-    alert("Account created successfully!");
-
-    // Redirect
-    navigate(accountType === "vendor" ? "/dashboard" : "/userHomepage");
+  const handleLogIn = async (data) => {
+  const payload = {
+    email: data.email,
+    password: data.password,
   };
 
-  const handleLoginSubmit = (e) => {
-    e.preventDefault();
+  console.log(data);
+  setisLogging(true);
 
-    const auth = localStorage.getItem("auth");
-    const role = localStorage.getItem("role");
-    const storedUsername = localStorage.getItem("username");
+  try {
+    const res = await apiLogin(payload);
+    console.log(res);
 
-    if (auth && storedUsername && role) {
-      login(storedUsername, role);
-      navigate(role === "vendor" ? "/dashboard" : "/userHomepage");
+   const userRole = res?.data?.user?.details?.role;
+   localStorage.setItem("accessToken", res.data.user.token)
+
+    toast.success("Login Successfully");
+
+    // Navigate based on role
+    if (userRole === "vendor") {
+      navigate("/dashboard");
     } else {
-      alert("Invalid login! Please register first.");
+      navigate("/user-homepage");
+    }
+  } catch (error) {
+    console.log(error);
+    toast.error(error?.message || "Oops! An error occurred");
+  } finally {
+    setisLogging(false);
+  }
+};
+
+
+
+
+  // trial end line
+
+  const handleSignUp = async (data) => {
+    const isUser = accountType == "user";
+
+    const payload = {
+      email: data.email,
+      password: data.password,
+
+      ...(isUser && {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        userName: data.userName,
+      }),
+      ...(!isUser && {
+        phone: data.phone,
+        location: data.location,
+        companyName: data.companyName,
+        number: data.phone,
+      }),
+      role: accountType,
+    };
+
+    console.log(data);
+
+    setisSubmitting(true);
+
+    try {
+      const res = await apiSignup(payload);
+      console.log(res);
+      toast.success(`${isUser ? "User" : "Vendor"} Registered Successfully!`);
+      setActiveTab("login");
+    } catch (error) {
+      console.log(error);
+      toast.error(error?.message || "Oops! An error occured");
+    } finally {
+      setisSubmitting(false);
     }
   };
+
+  const isError = Object.keys(errors).length > 0;
 
   return (
     <div className="min-h-screen w-screen flex items-center justify-center px-4 py-10 overflow-y-auto login-background loginpage">
@@ -82,18 +132,26 @@ function AuthToggle({ className = "" }) {
 
         {/* Login Form */}
         {activeTab === "login" ? (
-          <form onSubmit={handleLoginSubmit}>
+          <form onSubmit={handleSubmit(handleLogIn)}>
             <Input
               label="Email Address"
               id="login-email"
               type="email"
               placeholder="umar@example.com"
+              {...register("email", { required: "E-mail is Required" })}
             />
             <Input
               label="Password"
               id="login-password"
               type="password"
               placeholder="••••••••"
+              {...register("password", {
+                required: "Password Required",
+                minLength: {
+                  value: 8,
+                  message: "Password must be 8 characters",
+                },
+              })}
             />
 
             <div className="flex items-center justify-between mb-6">
@@ -119,7 +177,7 @@ function AuthToggle({ className = "" }) {
               type="submit"
               className="w-full bg-green-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-green-700 transition"
             >
-              Login to Account
+              {isloggin ? "Logging..." : "Login to Account"}
             </button>
 
             <div className="mt-6 text-center">
@@ -137,7 +195,7 @@ function AuthToggle({ className = "" }) {
           </form>
         ) : (
           // Register Form
-          <form onSubmit={handleRegisterSubmit}>
+          <form onSubmit={handleSubmit(handleSignUp)}>
             <div className="mb-6">
               <label
                 htmlFor="account-type"
@@ -147,11 +205,11 @@ function AuthToggle({ className = "" }) {
               </label>
               <select
                 id="account-type"
-                name="accountType"
                 value={accountType}
                 onChange={handleInputChange}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 transition bg-[#08ae5e]/25"
               >
+                <option value="">Select Account Type</option>
                 <option value="user">Regular User</option>
                 <option value="vendor">Vendor</option>
               </select>
@@ -164,13 +222,23 @@ function AuthToggle({ className = "" }) {
                     label="First Name"
                     id="first-name"
                     placeholder="Babs"
+                    {...register("firstName", { required: "Name Required" })}
                   />
-                  <Input label="Last Name" id="last-name" placeholder="Doe" />
+
+                  <Input
+                    label="Last Name"
+                    id="last-name"
+                    placeholder="Doe"
+                    {...register("lastName", {
+                      required: "Last Name Required",
+                    })}
+                  />
                 </div>
                 <Input
                   label="Username"
                   id="username"
                   placeholder="johndoe123"
+                  {...register("userName", { required: "User Name Required" })}
                 />
               </>
             ) : (
@@ -179,20 +247,26 @@ function AuthToggle({ className = "" }) {
                   label="Company Name"
                   id="company-name"
                   placeholder="Jubi Market"
+                  {...register("companyName", {
+                    required: "Provide Company Name",
+                  })}
                 />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <Input label="Phone" id="phone" placeholder="+233500000000" />
+                  <Input
+                    label="Phone"
+                    id="phone"
+                    placeholder="+233500000000"
+                    {...register("phone", { required: "Provide Phone Number" })}
+                  />
                   <Input
                     label="Location"
                     id="location"
                     placeholder="Accra, Ghana"
+                    {...register("location", {
+                      required: "Provide Phone Number",
+                    })}
                   />
                 </div>
-                <Input
-                  label="WhatsApp URL"
-                  id="whatsapp"
-                  placeholder="https://wa.me/233500000000"
-                />
               </>
             )}
 
@@ -201,20 +275,37 @@ function AuthToggle({ className = "" }) {
               id="register-email"
               type="email"
               placeholder="you@example.com"
+              {...register("email", { required: "Provide E-mail Address" })}
             />
+            {/* {errors?.email && (
+              <span className="text-red-400"> {errors.email.message} </span>
+            )} */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
               <Input
                 label="Password"
                 id="register-password"
                 type="password"
                 placeholder="••••••••"
+                {...register("password", { required: "Password Required" })}
               />
+
               <Input
                 label="Confirm Password"
                 id="confirm-password"
                 type="password"
                 placeholder="••••••••"
+                {...register("confirmPassword", {
+                  required: "Password Required",
+                })}
               />
+              {/* <div>
+                {errors?.password && (
+                  <span className="text-red-400">
+                    {" "}
+                    {errors.password.message}{" "}
+                  </span>
+                )}
+              </div> */}
             </div>
 
             <div className="flex items-center mb-6">
@@ -222,13 +313,12 @@ function AuthToggle({ className = "" }) {
                 type="checkbox"
                 id="terms"
                 className="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
-                required
               />
               <label
                 htmlFor="terms"
                 className="ml-2 block text-sm text-gray-700"
               >
-                I agree to the{" "}
+                I agree to the
                 <a href="#" className="text-green-600 hover:text-green-800">
                   Terms & Conditions
                 </a>
@@ -239,15 +329,16 @@ function AuthToggle({ className = "" }) {
               type="submit"
               className="w-full bg-green-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-green-700 transition"
             >
-              Create Account
+              {isSubmitting ? "Submitting..." : "Create Account"}
             </button>
 
             <div className="mt-6 text-center">
               <p className="text-gray-600">
-                Already have an account?{" "}
+                Already have an account?
                 <button
                   type="button"
                   onClick={() => setActiveTab("login")}
+                  disabled={isError}
                   className="text-green-600 font-medium hover:text-green-800 transition"
                 >
                   Login here
@@ -263,7 +354,8 @@ function AuthToggle({ className = "" }) {
 
 export default AuthToggle;
 
-function Input({ label, id, type = "text", placeholder }) {
+function Input(props) {
+  const { label, id, type = "text", placeholder } = props;
   return (
     <div className="mb-5">
       <label htmlFor={id} className="block text-gray-700 font-medium mb-2">
@@ -272,10 +364,9 @@ function Input({ label, id, type = "text", placeholder }) {
       <input
         type={type}
         id={id}
-        name={id}
         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 bg-[#08ae5e]/25 focus:border-transparent transition"
         placeholder={placeholder}
-        required
+        {...props}
       />
     </div>
   );
