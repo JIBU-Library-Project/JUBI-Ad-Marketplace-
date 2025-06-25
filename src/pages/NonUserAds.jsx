@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { dummyAds } from "../data/DummyAds";
+import { dummyAds } from "../data/dummyAds";
 
 function NonUserAds() {
   const [ads, setAds] = useState([]);
