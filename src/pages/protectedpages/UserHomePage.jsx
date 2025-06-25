@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import UserNavbar from "../../components/Protected/UserNavbar";
 import AdImageCarouselUsers from "../../components/SIngleCompos/AdImageCarouselUsers";
-import SlidingHeadline from "../../components/SIngleCompos/SlidingHeadline";
 import { useNavigate } from "react-router";
+import SlidingHeadline from "../../components/SIngleCompos/SlidingHeadline";
 
 const UserHomePage = () => {
   const navigate = useNavigate();
@@ -34,7 +34,7 @@ const UserHomePage = () => {
                 Welcome to Jubi.
               </h1>
 
-              <SlidingHeadline />
+              <SlidingHeadline/>
 
               <button
                 className="mt-4 px-6 py-2 bg-pink-600 text-white rounded-full font-semibold text-sm hover:bg-pink-700 transition"
