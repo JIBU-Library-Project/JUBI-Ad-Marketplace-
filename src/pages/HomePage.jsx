@@ -6,6 +6,7 @@ import NonUserAds from "./NonUserAds";
 import Footer from "../components/Footer";
 import SlidingHeadline from "../components/SIngleCompos/SlidingHeadline";
 
+
 function HomePage() {
   const handleViewMore = () => {
     alert("Log in or Create a Vendor Account to Start Advertising");
