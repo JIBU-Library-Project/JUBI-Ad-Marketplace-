@@ -2,8 +2,7 @@ import { useEffect } from "react";
 import UserNavbar from "../../components/Protected/UserNavbar";
 import AdImageCarouselUsers from "../../components/SIngleCompos/AdImageCarouselUsers";
 import { useNavigate } from "react-router";
-import SlidingHeadline from "../../components/SIngleCompos/SlidingHeadline";
-
+import SlidingHeadline from "../../components/SlidingHeadLine";
 const UserHomePage = () => {
   const navigate = useNavigate();
 

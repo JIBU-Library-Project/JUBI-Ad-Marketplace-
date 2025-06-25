@@ -4,7 +4,7 @@ import AdImageCarousel from "../components/SIngleCompos/AdImageCarousel";
 import { useNavigate } from "react-router";
 import NonUserAds from "./NonUserAds";
 import Footer from "../components/Footer";
-import SlidingHeadline from "../components/SIngleCompos/SlidingHeadline";
+import SlidingHeadline from "../components/SlidingHeadLine";
 
 
 function HomePage() {
