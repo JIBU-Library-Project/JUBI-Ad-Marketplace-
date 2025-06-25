@@ -3,7 +3,6 @@ import React from "react";
 import { dummyAds } from "../../data/DummyAds";
 import { Link } from "react-router-dom";
 function VendorOverview() {
-  
   // Filter ads by actual vendor I
   const myAds = dummyAds.filter((ad) => ad.vendor.id === "vendorId");
   const latestAd = myAds[0];
@@ -81,7 +80,6 @@ function VendorOverview() {
       </div>
     </div>
   );
-
 }
 
 export default VendorOverview;
