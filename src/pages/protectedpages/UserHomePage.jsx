@@ -5,19 +5,17 @@ import SlidingHeadline from "../../components/SIngleCompos/SlidingHeadline";
 import { useNavigate } from "react-router";
 
 const UserHomePage = () => {
+  const navigate = useNavigate();
 
-  const navigate = useNavigate
+  useEffect(() => {
+    //retrieve token from local storage
+    const token = localStorage.getItem("accessToken");
 
- useEffect(() => {
-  //retrieve token from local storage
-      const token = localStorage.getItem("accessToken");
-  
-      // if no token, navigate to login
-      if (!token) {
-        navigate("/");
-      }  
- },[])
-
+    // if no token, navigate to login
+    if (!token) {
+      navigate("/");
+    }
+  }, [navigate]);
 
   return (
     <div className="w-screen">
@@ -49,7 +47,7 @@ const UserHomePage = () => {
             </div>
           </div>
 
-          <AdImageCarouselUsers/>
+          <AdImageCarouselUsers />
         </div>
       </div>
     </div>

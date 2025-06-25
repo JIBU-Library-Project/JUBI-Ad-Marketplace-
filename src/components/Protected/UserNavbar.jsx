@@ -2,11 +2,16 @@ import { FaSignOutAlt, FaUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/jubimarklogo.png";
 import SearchBar from "../SearchBar";
+import { getUserFromToken } from "../../services/utils";
 
 
 const UserNavbar = ({ className = "" }) => {
   const navigate = useNavigate();
 
+
+const user = getUserFromToken();
+  const name = user?.userName || "User";
+ 
   const handleLogout = () => {
   localStorage.removeItem("accessToken")
     alert("You've logged out successfully");
@@ -25,14 +30,14 @@ const UserNavbar = ({ className = "" }) => {
 
         {/* Search */}
         <div className="w-full lg:w-auto">
-          <SearchBar className="w-full sm:w-96" />
+          {/* <SearchBar className="w-full sm:w-96" /> */}
         </div>
 
         {/* User Info and Logout */}
         <div className="flex items-center justify-end gap-3 text-sm text-[#08ae5e] mt-2 lg:mt-0">
           <span className="flex items-center gap-1 bg-[#08ae5e] text-white py-1.5 px-3 rounded-full whitespace-nowrap">
             <FaUser />
-            Hi, { "Username"}
+            Hi, {name}
 
             <button
               onClick={() => navigate("/Ads")}

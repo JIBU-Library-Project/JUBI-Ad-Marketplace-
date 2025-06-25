@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { dummyAds } from "../../data/DummyAds";
 import SafetyTipsCard from "../../components/SafetyTipsCard";
+import { apiDeleteAdvert, apiSingleVendorAds } from "../../services/adverts";
+import { toast } from "react-toastify"; // uncommented
 
 const categories = [
   "Electronics",
-  "Real Estate",
-  "Food & Groceries",
+  "Real-Estate",
+  "Food",
   "Fashion",
 ];
 
 function VendorAdsPage() {
-
   const navigate = useNavigate();
 
   const [query, setQuery] = useState("");
@@ -19,9 +19,20 @@ function VendorAdsPage() {
   const [myAds, setMyAds] = useState([]);
 
   useEffect(() => {
-    const vendorAds = dummyAds.filter((ad) => ad.vendor.id === "vendorId");
-    setMyAds(vendorAds);
-  },[]); 
+    const fetchVendorAds = async () => {
+      try {
+        const response = await apiSingleVendorAds();
+        const vendorAds = response.data.vendorAds;
+        console.log(vendorAds);
+        setMyAds(vendorAds);
+      } catch (error) {
+        console.error("Failed to fetch vendorAds", error);
+        toast.error("Failed to fetch vendor ads");
+      }
+    };
+
+    fetchVendorAds();
+  }, []);
 
   const filteredAds = myAds.filter((ad) => {
     const matchTitle = ad.title.toLowerCase().includes(query.toLowerCase());
@@ -31,8 +42,17 @@ function VendorAdsPage() {
     return matchTitle && matchCategory;
   });
 
-  const handleDelete = (id) => {
-    alert(`Ad with ID ${id} would be deleted here.`);
+  const handleDelete = async (id) => {
+    try {
+      const response = await apiDeleteAdvert(id);
+      const deletedAd = response.data?.ads;
+      console.log(deletedAd);
+
+      alert(response.data.message || "You've deleted an Ad");
+    } catch (error) {
+      console.error("Failed to delete an Ad", error);
+      alert("Error deleting the ad.");
+    }
   };
 
   return (
@@ -99,7 +119,7 @@ function VendorAdsPage() {
             ) : (
               filteredAds.map((ad) => (
                 <div
-                  key={ad.id}
+                  key={ad._id}
                   className="bg-white border border-gray-200 rounded-xl shadow-md flex flex-col md:flex-row overflow-hidden transition hover:shadow-lg"
                 >
                   <img
@@ -121,19 +141,21 @@ function VendorAdsPage() {
                     </div>
                     <div className="mt-4 flex gap-2 flex-wrap">
                       <button
-                        onClick={() => navigate(`/dashboard/ads/${ad.id}`)}
+                        onClick={() => navigate(`/dashboard/ads/${ad._id}`)}
                         className="px-4 py-1.5 bg-blue-100 text-blue-700 font-medium rounded hover:bg-blue-200 text-sm"
                       >
                         👁 View
                       </button>
                       <button
-                        onClick={() => navigate(`/dashboard/ads/${ad.id}/edit`)}
+                        onClick={() =>
+                          navigate(`/dashboard/ads/${ad._id}`)
+                        }
                         className="px-4 py-1.5 bg-yellow-100 text-yellow-800 font-medium rounded hover:bg-yellow-200 text-sm"
                       >
                         ✏️ Edit
                       </button>
                       <button
-                        onClick={() => handleDelete(ad.id)}
+                        onClick={() => handleDelete(ad._id)}
                         className="px-4 py-1.5 bg-red-100 text-red-700 font-medium rounded hover:bg-red-200 text-sm"
                       >
                         🗑 Delete

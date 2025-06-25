@@ -19,6 +19,8 @@ import AllAdsPage from "./pages/AllAdsPage";
 import VendorPublicAdsPage from "./pages/VendorPublicAdsPage";
 import EditAddPage from "./pages/vendor/EditAddPage";
 import VendorAdDetailPage from "./pages/vendor/VendorAdDetailPage";
+import AuthProtectedRoute from "./pages/protectedpages/AuthProtectedRoute";
+import Unauthorized from "./pages/Unauthorized";
 
 function App() {
   const router = createBrowserRouter([
@@ -28,33 +30,52 @@ function App() {
     },
     {
       path: "/ads",
-      element: <AllAdsPage />,
+      element: (
+        <AuthProtectedRoute allowedRoles={["user"]}>
+          <AllAdsPage />
+        </AuthProtectedRoute>
+      ),
     },
     {
       path: "/ads/:id",
-      element: <AdDetailPage />,
+      element: (
+        <AuthProtectedRoute allowedRoles={["user"]}>
+          <AdDetailPage />
+        </AuthProtectedRoute>
+      ),
     },
-    {
-      path: "/category/:categoryName",
-      element: <CategoryAdsPage />,
-    },
-
     {
       path: "/user-homepage",
-      element: <UserHomePage />,
+      element: (
+        <AuthProtectedRoute allowedRoles={["user"]}>
+          <UserHomePage />
+        </AuthProtectedRoute>
+      ),
     },
     {
       path: "/login",
       element: <LoginPage />,
     },
     {
+      path: "/unauthorized",
+      element: <Unauthorized />,
+    },
+    {
       path: "vendor/:vendorId/ads",
-      element: <VendorPublicAdsPage />,
+      element: (
+        <AuthProtectedRoute allowedRoles={["user"]}>
+          <VendorPublicAdsPage />
+        </AuthProtectedRoute>
+      ),
     },
 
     {
       path: "/dashboard",
-      element: <DashboardLayout />,
+      element: (
+        <AuthProtectedRoute allowedRoles={["vendor"]}>
+          <DashboardLayout />
+        </AuthProtectedRoute>
+      ),
       children: [
         {
           index: true,
@@ -69,7 +90,7 @@ function App() {
           element: <CreateAd />,
         },
         {
-          path: "ads/:id/edit",
+          path: "ads/:id",
           element: <EditAddPage />,
         },
         {

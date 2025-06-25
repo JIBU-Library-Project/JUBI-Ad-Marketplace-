@@ -1,26 +1,50 @@
 // src/pages/VendorAdDetailPage.jsx
 import React from "react";
 import { useParams } from "react-router-dom";
-import { dummyAds } from "../../data/DummyAds";
 import CarouselForAds from "../../components/SIngleCompos/CarouselForAds";
-
+import { useEffect } from "react";
+import { apiGetSingleAdvert } from "../../services/adverts";
+import { useState } from "react";
 
 function VendorAdDetailPage() {
+
+const [singleAd, setSingleAd] = useState(null);
+  const [loading, setLoading] = useState(false);
   const { id } = useParams();
 
-  const ad = dummyAds.find((item) => item.id === id);
 
-  if (!ad) return <div className="text-center py-20 text-lg">Ad not found</div>;
 
-  const {
-    title,
-    description,
-    price,
-    images,
-    vendor,
-    metadata,
-    createdAt,
-  } = ad;
+
+ useEffect(() => {
+    const fetchSingleAd = async () => {
+      setLoading(true);
+  
+      try {
+        const response = await apiGetSingleAdvert(id);
+        const ad = response.data?.ad || response.data?.ads; // support either key
+        setSingleAd(ad);
+        console.log(ad);
+      } catch (error) {
+        console.error("Failed to fetch single Ad:", error);
+      } finally {
+           //{toast.success("Loading...")}
+        setLoading(false);
+      }
+    };
+
+    if (id) fetchSingleAd();
+  }, [id]);
+
+
+
+
+
+
+if (loading) return <div className="text-center py-10"> </div>;
+  if (!singleAd) return <div className="text-center py-10">Ad not found</div>;
+ 
+ const { title, description, price, images, metadata, vendorDetails } =
+    singleAd;
 
   return (
     <div className="bg-[#f1f1f1] min-w-screen ">
@@ -32,7 +56,7 @@ function VendorAdDetailPage() {
           <div className="flex-1">
             <div className="mb-6">
               <h1 className="text-3xl font-bold mb-2">{title}</h1>
-              <p className="text-lg text-gray-600 mb-2">{vendor.location}</p>
+              <p className="text-lg text-gray-600 mb-2">{vendorDetails.location}</p>
               <p className="text-2xl font-semibold text-green-700 mb-4">
                 GHS {price}
               </p>
@@ -65,18 +89,16 @@ function VendorAdDetailPage() {
           <div className="w-full lg:w-[350px] space-y-6 max-h-screen p-5 shadow-xl border bg-[#fff] border-[#dfdfdf]">
             <div className="flex justify-between items-start">
               <div>
-                <h3 className="font-bold text-xl mb-1">{vendor.companyName}</h3>
-                <p className="text-sm text-gray-600">{vendor.location}</p>
-                <p className="text-sm text-gray-600">{vendor.phone}</p>
-                <p className="text-xs text-gray-400 mt-1">
-                  Posted on: {new Date(createdAt).toLocaleDateString()}
-                </p>
+                <h3 className="font-bold text-xl mb-1">{vendorDetails.companyName}</h3>
+                <p className="text-sm text-gray-600">{vendorDetails.location}</p>
+                <p className="text-sm text-gray-600">{vendorDetails.phone}</p>
+                
               </div>
             </div>
 
             <div className="bg-gray-100 p-4 rounded">
               <p className="text-sm mb-3">
-                Hello <strong>{vendor.name}</strong>, this is your posted ad.
+                Hello <strong>{vendorDetails.companyName}</strong>, this is your posted ad.
               </p>
               <p className="text-sm text-gray-600">
                 You can update or remove it from your dashboard.
