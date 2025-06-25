@@ -1,10 +1,31 @@
 // src/pages/vendor/VendorOverview.jsx
 import React from "react";
-import { dummyAds } from "../../data/DummyAds";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
+import { apiFetchAdverts } from "../../services/adverts";
+
 function VendorOverview() {
-  // Filter ads by actual vendor I
-  const myAds = dummyAds.filter((ad) => ad.vendor.id === "vendorId");
+  const [ads, setAds] = useState([]);
+
+  useEffect(() => {
+    const fetchAds = async () => {
+      try {
+        const response = await apiFetchAdverts();
+        setAds(response.data.ads);
+        toast.success("Ads loaded successfully");
+        console.log(response.data.ads);
+      } catch (error) {
+        console.error("Failed to fetch ads:", error);
+        toast.error("Failed to load ads. Please try again later.");
+      }
+    };
+
+    fetchAds();
+  }, []);
+
+  const myAds = ads.filter((ad) => ad.vendor?.id === "vendorId");
   const latestAd = myAds[0];
   return (
     <div className="md:ml-64 ml-0 pt-16 px-4 max-w-6xl mx-auto py-10">
