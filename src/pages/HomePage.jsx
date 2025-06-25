@@ -2,9 +2,9 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import AdImageCarousel from "../components/SIngleCompos/AdImageCarousel";
 import { useNavigate } from "react-router";
-import SlidingHeadLine from "../components/SIngleCompos/SlidingHeadline";
 import NonUserAds from "./NonUserAds";
 import Footer from "../components/Footer";
+import SlidingHeadline from "../components/SIngleCompos/SlidingHeadline";
 
 function HomePage() {
   const handleViewMore = () => {
@@ -23,7 +23,7 @@ function HomePage() {
                 The Smarter to Get <em className="text-yellow-400">Noticed.</em>
               </h1>
 
-              <SlidingHeadLine />
+              <SlidingHeadline/>
 
               <button
                 className="mt-4 px-6 py-2 bg-pink-600 text-white rounded-full font-semibold text-sm hover:bg-pink-700 transition"
