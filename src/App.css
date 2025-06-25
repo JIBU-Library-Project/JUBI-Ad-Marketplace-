@@ -20,3 +20,8 @@
   background-repeat: no-repeat;
   
 }
+
+
+body{
+  overflow-x: hidden;
+}

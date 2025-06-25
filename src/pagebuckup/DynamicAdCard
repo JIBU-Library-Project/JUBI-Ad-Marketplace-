@@ -9,7 +9,7 @@ const DynamicAdCard = ({ ad, isVendor = false }) => {
   };
 
   const handleEdit = () => {
-    navigate(`/dashboard/ads/${ad.id}/edit`);
+    navigate(`/dashboard/ads/${ad.id}`);
   };
 
   const handleDelete = () => {

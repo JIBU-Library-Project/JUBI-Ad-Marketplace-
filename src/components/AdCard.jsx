@@ -1,36 +1,32 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const AdCard = ({ ad, isVendorView = false, onEdit, onDelete }) => {
+const AdCard = ({
+  ad: { images, _id, title, price, category, vendorDetails },
+  isVendorView = false,
+  onEdit,
+  onDelete,
+}) => {
   const navigate = useNavigate();
 
-  const {
-    id,
-    title,
-    price,
-    category,
-    createdAt,
-    images,
-    vendor,
-  } = ad;
 
-  const firstImage = images?.[0] || "https://via.placeholder.com/150";
+
+  const firstImage = images?.[0];
 
   const handleEdit = (e) => {
-    e.stopPropagation(); // prevent card click
-    onEdit?.(id);
-    navigate(`/dashboard/ads/${id}/edit`);
+    e.stopPropagation();
+    onEdit?.(_id);
+    navigate(`/dashboard/ads/${_id}`);
   };
 
   const handleDelete = (e) => {
-    e.stopPropagation(); // prevent card click
+    e.stopPropagation(); 
     if (window.confirm("Are you sure you want to delete this ad?")) {
-      onDelete?.(id);
+      onDelete?.(_id);
     }
   };
 
   const handleNavigate = () => {
-    navigate(`/ads/${id}`);
+    navigate(`/ads/${_id}`);
   };
 
   return (
@@ -58,11 +54,11 @@ const AdCard = ({ ad, isVendorView = false, onEdit, onDelete }) => {
           <p className="text-xs text-gray-500">
             Posted by:{" "}
             <span className="font-medium">
-              {vendor?.name || "Anonymous"}
+              {vendorDetails?.companyName || "Anonymous"}
             </span>
           </p>
           <p className="text-xs text-gray-400 pt-5">
-            On {new Date(createdAt).toDateString()}
+            {/* On {new Date(createdAt).toDateString()} */}
           </p>
         </div>
 

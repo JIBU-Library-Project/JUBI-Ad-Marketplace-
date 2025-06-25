@@ -46,7 +46,6 @@ function AuthToggle({ className = "" }) {
 
    const userRole = res?.data?.user?.details?.role;
    localStorage.setItem("accessToken", res.data.user.token)
-
     toast.success("Login Successfully");
 
     // Navigate based on role
@@ -63,10 +62,6 @@ function AuthToggle({ className = "" }) {
   }
 };
 
-
-
-
-  // trial end line
 
   const handleSignUp = async (data) => {
     const isUser = accountType == "user";
@@ -148,7 +143,7 @@ function AuthToggle({ className = "" }) {
               {...register("password", {
                 required: "Password Required",
                 minLength: {
-                  value: 8,
+                  value: 4,
                   message: "Password must be 8 characters",
                 },
               })}
@@ -207,7 +202,7 @@ function AuthToggle({ className = "" }) {
                 id="account-type"
                 value={accountType}
                 onChange={handleInputChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 transition bg-[#08ae5e]/25"
+                className="w-full px-4 py-3 border border-gray-300 px- rounded-lg focus:ring-2 focus:ring-gray-500 transition bg-[#2b2c2c]/15"
               >
                 <option value="">Select Account Type</option>
                 <option value="user">Regular User</option>
@@ -364,7 +359,7 @@ function Input(props) {
       <input
         type={type}
         id={id}
-        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 bg-[#08ae5e]/25 focus:border-transparent transition"
+        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 bg-[#292b2a]/15 focus:border-transparent transition"
         placeholder={placeholder}
         {...props}
       />
