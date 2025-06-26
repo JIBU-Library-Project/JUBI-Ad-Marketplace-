@@ -50,7 +50,7 @@ function VendorAdsPage() {
       const deletedAd = response.data?.ads;
       console.log(deletedAd);
 
-      alert(response.data.message || "You've deleted an Ad");
+      toast("You've deleted an Ad");
     } catch (error) {
       console.error("Failed to delete an Ad", error);
       alert("Error deleting the ad.");
