@@ -90,7 +90,7 @@ function App() {
           element: <CreateAd />,
         },
         {
-          path: "ads/:id",
+          path: "ads/:id/edit",
           element: <EditAddPage />,
         },
         {

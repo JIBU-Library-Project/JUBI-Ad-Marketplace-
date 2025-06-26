@@ -150,7 +150,7 @@ function VendorAdsPage() {
                       </button>
                       <button
                         onClick={() =>
-                          navigate(`/dashboard/ads/${ad._id}`)
+                          navigate(`/dashboard/ads/${ad._id}/edit`)
                         }
                         className="px-4 py-1.5 bg-yellow-100 text-yellow-800 font-medium rounded hover:bg-yellow-200 text-sm"
                       >

@@ -86,7 +86,7 @@ if (loading) return <div className="text-center py-10"> </div>;
           </div>
 
           {/* RIGHT: Sidebar */}
-          <div className="w-full lg:w-[350px] space-y-6 max-h-screen p-5 shadow-xl border bg-[#fff] border-[#dfdfdf]">
+          <div className="w-full lg:w-[350px] space-y-6 h-[70vh] p-5 shadow-xl border bg-[#fff] border-[#dfdfdf]">
             <div className="flex justify-between items-start">
               <div>
                 <h3 className="font-bold text-xl mb-1">{vendorDetails.companyName}</h3>

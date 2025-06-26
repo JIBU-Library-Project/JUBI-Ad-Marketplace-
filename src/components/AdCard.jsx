@@ -15,7 +15,7 @@ const AdCard = ({
   const handleEdit = (e) => {
     e.stopPropagation();
     onEdit?.(_id);
-    navigate(`/dashboard/ads/${_id}`);
+    navigate(`/dashboard/ads/${_id}/edit`);
   };
 
   const handleDelete = (e) => {

@@ -22,7 +22,7 @@ const K = {
     },
 
     {
-      path: "/dashboard/ads/:id",
+      path: "/dashboard/ads/:id/edit",
     },
   ],
 };
