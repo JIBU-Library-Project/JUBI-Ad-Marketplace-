@@ -38,7 +38,7 @@ const UserHomePage = () => {
               <SlidingHeadline />
 
               <button
-                className="mt-4 px-6 py-2 bg-pink-600 text-white rounded-full font-semibold text-sm hover:bg-pink-700 transition"
+                className="mt-4 px-6 py-2 bg-green-600 text-white rounded-full font-semibold text-sm hover:bg-green-700 transition"
                 onClick={() =>
                   alert("Create a Vendor Account to Start Advertising")
                 }

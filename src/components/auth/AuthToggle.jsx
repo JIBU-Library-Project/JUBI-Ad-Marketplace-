@@ -160,12 +160,12 @@ function AuthToggle({ className = "" }) {
                 />
                 <span className="ml-2 text-sm text-gray-700">Remember me</span>
               </label>
-              <a
+              {/* <a
                 href="#"
                 className="text-sm text-[#074d24] hover:text-green-700"
               >
                 Forgot password?
-              </a>
+              </a> */}
             </div>
 
             <button

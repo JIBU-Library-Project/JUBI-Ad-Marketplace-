@@ -59,12 +59,12 @@ function SafetyTipsCard() {
       </div>
 
       <div className="mt-2 pt-5">
-        <a
+        {/* <a
           href="/safety-tips"
           className="text-blue-600 text-sm font-medium hover:underline absolute"
         >
           Read all safety tips
-        </a>
+        </a> */}
       </div>
     </div>
   );
