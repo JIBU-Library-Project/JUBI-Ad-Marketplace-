@@ -69,7 +69,7 @@ function VendorOverview() {
           to="/dashboard/my-ads"
           className="bg-gray-500 text-white px-5 py-3 text-center hover:bg-gray-700 hover:scale-[1.02] transition-transform duration-300 w-full sm:w-auto"
         >
-         View My Ads
+         View Your Ads
         </Link>
       </div>
 
