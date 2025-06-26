@@ -6,6 +6,7 @@ import NavigationBar from "../components/NavigationBar";
 import Footer from "../components/Footer";
 import { apiGetSingleAdvert } from "../services/adverts";
 import { toast } from "react-toastify";
+import Spinner from "../components/Spinner";
 
 function AdDetailPage() {
   const [singleAd, setSingleAd] = useState(null);
@@ -33,7 +34,7 @@ function AdDetailPage() {
     if (id) fetchSingleAd();
   }, [id]);
 
-  if (loading) return <div className="text-center py-10"> Loading.... </div>;
+  if (loading) return <div className="text-center py-10"> <Spinner/> </div>;
   if (!singleAd) return <div className="text-center py-10">Ad not found</div>;
 
   const { title, description, price, images, metadata, vendorDetails } =

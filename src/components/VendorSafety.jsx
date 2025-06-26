@@ -10,15 +10,15 @@ import React, { useState } from "react";
 // ];
 
 const safetyTips = [
-  "Always ask the vendor for clear photos and details before making a decision.",
-  "Meet vendors in safe, public places — avoid isolated locations.",
-  "Never send money in advance to a vendor you haven’t met or verified.",
-  "Double-check the item’s condition in person before paying.",
-  "If anything feels suspicious or rushed, walk away — your safety comes first."
+  "Always provide clear photos and accurate details of your product.",
+  "Meet buyers in well-lit, public areas — avoid private or isolated meetups.",
+  "Do not accept upfront payments unless you're using a secure payment method.",
+  "Encourage buyers to inspect items thoroughly before finalizing a deal.",
+  "Stay alert for signs of scams or rushed decisions — prioritize your safety."
 ];
 
 
-function SafetyTipsCard() {
+function VendorSafety() {
   const [index, setIndex] = useState(0);
 
   const nextTip = () => {
@@ -30,7 +30,7 @@ function SafetyTipsCard() {
   };
 
   return (
-    <div>
+    <div className="relative">
       <div className="flex items-center justify-between mb-3">
         <h2 className="text-sm font-bold text-[#464646] ">Stay Safe</h2>
         
@@ -70,4 +70,4 @@ function SafetyTipsCard() {
   );
 }
 
-export default SafetyTipsCard;
+export default VendorSafety;

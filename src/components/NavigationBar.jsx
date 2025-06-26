@@ -1,8 +1,17 @@
 import { useNavigate } from "react-router";
 import logo from "../assets/jubimarklogo.png";
+import { toast } from "react-toastify";
 
 const NavigationBar = () => {
   const navigate = useNavigate()
+
+
+
+  const handleLogout = () => {
+  localStorage.removeItem("accessToken")
+  toast("You've logged out successfully");
+    navigate("/login");
+  };
 
   return (
     <div className=" flex h-20 justify-between pr-20 items-center bg-[#ffffff]/70 backdrop-blur-md border-b-3 border-[#0b8607] shadow-2xl fixed top-0 left-0 right-0 z-50">
@@ -20,6 +29,13 @@ const NavigationBar = () => {
         onClick={()=>navigate('/ads')}>
           View All Ads{" "}
         </button>
+
+        <button
+            onClick={handleLogout}
+            className="bg-[#ff0e06] p-2 pr-5   pl-5  ml-5 rounded-[10px] hover:bg-red-400 hover:cursor-pointer text-white " 
+          >
+            Logout
+          </button>
       </span>
     </div>
   );

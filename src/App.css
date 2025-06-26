@@ -14,6 +14,13 @@
 }
 
 .introheader {
+   /* background-image: url('../src/assets/introimg1.jpg'); */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+}
+.introheader1 {
    background-image: url('../src/assets/introimg1.jpg');
   background-size: cover;
   background-position: center;
