@@ -12,6 +12,7 @@ const CreateAd = () => {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -44,9 +45,9 @@ const CreateAd = () => {
     if (data.category.toLowerCase() == "real-estate") {
       payload.append("rooms", data.rooms);
       payload.append("bathrooms", data.bathrooms);
-      payload.append("furnished", data.furnished);
+      payload.append("furnished", data.furnished ? "true" : "false");
       payload.append("paymentTerm", data.paymentTerm);
-      payload.append("hasParking", data.hasParking);
+      payload.append("hasParking", data.hasParking ? "true" : "false");
     }
 
     if (data.category.toLowerCase() == "food") {
@@ -54,7 +55,7 @@ const CreateAd = () => {
       payload.append("quantity", data.quantity);
       payload.append("expiry", data.expiry);
       payload.append("origin", data.origin);
-      payload.append("packaged", data.packaged);
+      payload.append("packaged", data.packaged ? "true" : "false");
     }
 
     if (data.category.toLowerCase() == "fashion") {
@@ -70,6 +71,7 @@ const CreateAd = () => {
       const response = await apiCreatedAd(payload);
       console.log(response);
       toast.success("Ad posted successfully");
+      reset();
     } catch (error) {
       console.error(error);
       toast.error("Failed to post ad");
@@ -80,9 +82,9 @@ const CreateAd = () => {
 
   return (
     <div className="md:ml-64 ml-0 pt-16 px-4">
-      <div className="bg-[#f8fafc] shadow-md py-4 px-6 rounded-t-lg flex items-center mb-10">
-        <BsMegaphone className="text-5xl text-green-500 m-2" />
-        <h1 className="text-2xl font-bold text-gray-800">
+      <div className="bg-black shadow-md py-4 px-6 rounded-t-lg flex items-center mb-10">
+        <BsMegaphone className="text-5xl text-green-500 m-2 animate-bounce" />
+        <h1 className="text-2xl font-bold text-white">
           Post a New Advertisement
         </h1>
       </div>
@@ -93,7 +95,7 @@ const CreateAd = () => {
       >
         {/* Category */}
         <select
-          className="w-full p-2 border-2 rounded-xl"
+          className="w-full p-2 border-2 rounded"
           {...register("category", { required: "Category Required" })}
         >
           <option value="">-- Select Category --</option>
@@ -111,7 +113,7 @@ const CreateAd = () => {
         <input
           type="text"
           placeholder="Title"
-          className="w-full p-2 border-2 rounded-xl"
+          className="w-full p-2 border-2 rounded"
           {...register("title", { required: "Title is required" })}
         />
         {errors.title && (
@@ -120,7 +122,7 @@ const CreateAd = () => {
 
         <textarea
           placeholder="Description"
-          className="w-full p-2 border-2 rounded-xl"
+          className="w-full p-2 border-2 rounded"
           {...register("description", { required: "Description is required" })}
         />
         {errors.description && (
@@ -130,7 +132,7 @@ const CreateAd = () => {
         <input
           type="number"
           placeholder="Price"
-          className="w-full p-2 border-2 rounded-xl"
+          className="w-full p-2 border-2 rounded"
           {...register("price", { required: "Price is required" })}
         />
         {errors.price && (
@@ -140,7 +142,7 @@ const CreateAd = () => {
         <input
           type="text"
           placeholder="Location"
-          className="w-full p-2 border-2 rounded-xl"
+          className="w-full p-2 border-2 rounded"
           {...register("location", { required: "Location is required" })}
         />
         {errors.location && (
@@ -150,116 +152,138 @@ const CreateAd = () => {
         {/* Conditional Fields */}
         {category === "electronics" && (
           <>
-            <input
-              placeholder="Brand"
-              {...register("brand")}
-              className="w-full p-2 border-2 rounded-xl"
-            />
-            <input
-              placeholder="Model"
-              {...register("model")}
-              className="w-full p-2 border-2 rounded-xl"
-            />
-            <input
-              placeholder="Storage"
-              {...register("storage")}
-              className="w-full p-2 border-2 rounded-xl"
-            />
-            <input
-              placeholder="Condition"
-              {...register("condition")}
-              className="w-full p-2 border-2 rounded-xl"
-            />
-            <input
-              placeholder="Warranty"
-              {...register("warranty")}
-              className="w-full p-2 border-2 rounded-xl"
-            />
+            <div className="grid grid-cols-3 gap-4">
+              <input
+                placeholder="Brand"
+                {...register("brand")}
+                className="w-full p-2 border-2 rounded"
+              />
+              <input
+                placeholder="Model"
+                {...register("model")}
+                className="w-full p-2 border-2 rounded"
+              />
+              <input
+                placeholder="Storage"
+                {...register("storage")}
+                className="w-full p-2 border-2 rounded"
+              />
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <input
+                placeholder="Condition"
+                {...register("condition")}
+                className="w-full p-2 border-2 rounded"
+              />
+              <input
+                placeholder="Warranty"
+                {...register("warranty")}
+                className="w-full p-2 border-2 rounded"
+              />
+            </div>
           </>
         )}
 
         {category === "fashion" && (
           <>
-            <input
-              placeholder="Brand"
-              {...register("brand")}
-              className="w-full p-2 border-2 rounded-xl"
-            />
-            <input
-              placeholder="Size"
-              {...register("size")}
-              className="w-full p-2 border-2 rounded-xl"
-            />
-            <input
-              placeholder="Material"
-              {...register("material")}
-              className="w-full p-2 border-2 rounded-xl"
-            />
-            <input
-              placeholder="Gender"
-              {...register("gender")}
-              className="w-full p-2 border-2 rounded-xl"
-            />
-            <input
-              placeholder="Color"
-              {...register("color")}
-              className="w-full p-2 border-2 rounded-xl"
-            />
+            <div className="grid grid-cols-2 gap-4">
+              <input
+                placeholder="Gender"
+                {...register("gender")}
+                className="w-full p-2 border-2 rounded"
+              />
+              <input
+                placeholder="Color"
+                {...register("color")}
+                className="w-full p-2 border-2 rounded"
+              />
+            </div>
+
+            <div className="grid grid-cols-3 gap-4">
+              <input
+                placeholder="Brand"
+                {...register("brand")}
+                className="w-full p-2 border-2 rounded"
+              />
+              <input
+                placeholder="Size"
+                {...register("size")}
+                className="w-full p-2 border-2 rounded"
+              />
+              <input
+                placeholder="Material"
+                {...register("material")}
+                className="w-full p-2 border-2 rounded"
+              />
+            </div>
           </>
         )}
 
         {category === "real-estate" && (
           <>
-            <input
-              type="number"
-              placeholder="Rooms"
-              {...register("rooms")}
-              className="w-full p-2 border-2 rounded-xl"
-            />
-            <input
-              type="number"
-              placeholder="Bathrooms"
-              {...register("bathrooms")}
-              className="w-full p-2 border-2 rounded-xl"
-            />
-            <label className="flex items-center gap-2">
-              <input type="checkbox" {...register("furnished")} />
-              Furnished
-            </label>
-            <input
-              placeholder="Payment Term"
-              {...register("paymentTerm")}
-              className="w-full p-2 border-2 rounded-xl"
-            />
-            <label className="flex items-center gap-2">
-              <input type="checkbox" {...register("hasParking")} />
-              Has Parking
-            </label>
+            <div className="grid grid-cols-3 gap-4">
+              <input
+                type="number"
+                placeholder="Rooms"
+                {...register("rooms")}
+                className="w-full p-2 border-2 rounded"
+              />
+              <input
+                type="number"
+                placeholder="Bathrooms"
+                {...register("bathrooms")}
+                className="w-full p-2 border-2 rounded"
+              />
+
+              <input
+                placeholder="Payment Term"
+                {...register("paymentTerm")}
+                className="w-full p-2 border-2 rounded"
+              />
+            </div>
+
+            <div className=" flex flex-row gap-4">
+              <label className="flex items-center gap-2">
+                <input type="checkbox" {...register("furnished")} />
+                Furnished
+              </label>
+
+              <label className="flex items-center gap-2">
+                <input type="checkbox" {...register("hasParking")} />
+                Has Parking
+              </label>
+            </div>
           </>
         )}
 
         {category === "food" && (
           <>
-            <input
-              placeholder="Type"
-              {...register("type")}
-              className="w-full p-2 border-2 rounded-xl"
-            />
-            <input
-              placeholder="Quantity"
-              {...register("quantity")}
-              className="w-full p-2 border-2 rounded-xl"
-            />
+            <div className="grid grid-cols-2 gap-4">
+              <input
+                placeholder="Type"
+                {...register("type")}
+                className="w-full p-2 border-2 rounded"
+              />
+              <input
+                placeholder="Quantity"
+                {...register("quantity")}
+                className="w-full p-2 border-2 rounded"
+              />
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
             <input
               type="date"
               {...register("expiry")}
-              className="w-full p-2 border-2 rounded-xl"
+              className="w-full p-2 border-2 rounded"
             />
             <input
               placeholder="Origin"
               {...register("origin")}
-              className="w-full p-2 border-2 rounded-xl"
+              className="w-full p-2 border-2 rounded"
             />
+            </div>
             <label className="flex items-center gap-2">
               <input type="checkbox" {...register("packaged")} />
               Packaged
@@ -279,7 +303,7 @@ const CreateAd = () => {
               type="file"
               accept="image/*"
               multiple
-              className="w-full p-2 border"
+              className="w-full "
             />
           </div>
           {errors.images && (
@@ -291,7 +315,7 @@ const CreateAd = () => {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="bg-blue-600 text-white py-2 px-6 rounded hover:bg-blue-700"
+          className="bg-[#32B32B] text-white py-2 px-6 rounded w-50"
         >
           {isSubmitting ? "Submitting..." : "Submit Ad"}
         </button>

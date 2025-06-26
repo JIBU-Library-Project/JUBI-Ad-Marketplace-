@@ -17,6 +17,7 @@ const EditAddPage = () => {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm({
     values: {
@@ -56,6 +57,7 @@ const EditAddPage = () => {
 
         const ad = response.data?.ad || response.data?.ads;
         setAds(ad);
+        reset();
         console.log(ad);
       } catch (error) {
         console.error("Failed to fetch single Ad:", error);
@@ -121,7 +123,7 @@ const EditAddPage = () => {
       const response = await apiUpdateAdvert(params.id, data);
       console.log(response);
       toast.success("Ad updated successfully");
-      navigate('/dashboard/my-ads')
+      navigate("/dashboard/my-ads");
     } catch (error) {
       console.error(error);
       toast.error("Failed to update ad");
@@ -132,11 +134,9 @@ const EditAddPage = () => {
 
   return (
     <div className="md:ml-64 ml-0 pt-16 px-4">
-      <div className="bg-[#f8fafc] shadow-md py-4 px-6 rounded-t-lg flex items-center mb-10">
+      <div className="bg-black shadow-md py-4 px-6 rounded-t-lg flex items-center mb-10">
         <BsMegaphone className="text-5xl text-green-500 m-2" />
-        <h1 className="text-2xl font-bold text-gray-800">
-          Post a New Advertisement
-        </h1>
+        <h1 className="text-2xl font-bold text-white">Edit  Advertisement</h1>
       </div>
 
       <form
@@ -145,7 +145,7 @@ const EditAddPage = () => {
       >
         {/* Category */}
         <select
-          className="w-full p-2 border-2 rounded-xl"
+          className="w-full p-2 border-2 rounded"
           {...register("category", { required: "Category Required" })}
         >
           <option value="">-- Select Category --</option>
@@ -158,167 +158,182 @@ const EditAddPage = () => {
         {errors.category && (
           <p className="text-red-500 text-sm">{errors.category.message}</p>
         )}
-
         {/* Common Fields */}
         <input
           type="text"
           placeholder="Title"
-          className="w-full p-2 border-2 rounded-xl"
+          className="w-full p-2 border-2 rounded"
           {...register("title", { required: "Title is required" })}
         />
         {errors.title && (
           <p className="text-red-500 text-sm">{errors.title.message}</p>
         )}
-
         <textarea
           placeholder="Description"
-          className="w-full p-2 border-2 rounded-xl"
+          className="w-full p-2 border-2 rounded"
           {...register("description", { required: "Description is required" })}
         />
         {errors.description && (
           <p className="text-red-500 text-sm">{errors.description.message}</p>
         )}
-
         <input
           type="number"
           placeholder="Price"
-          className="w-full p-2 border-2 rounded-xl"
+          className="w-full p-2 border-2 rounded"
           {...register("price", { required: "Price is required" })}
         />
         {errors.price && (
           <p className="text-red-500 text-sm">{errors.price.message}</p>
         )}
-
         <input
           type="text"
           placeholder="Location"
-          className="w-full p-2 border-2 rounded-xl"
+          className="w-full p-2 border-2 rounded"
           {...register("location", { required: "Location is required" })}
         />
         {errors.location && (
           <p className="text-red-500 text-sm">{errors.location.message}</p>
         )}
-
         {/* Conditional Fields */}
         {category === "electronics" && (
           <>
-            <input
-              placeholder="Brand"
-              {...register("brand")}
-              className="w-full p-2 border-2 rounded-xl"
-            />
-            <input
-              placeholder="Model"
-              {...register("model")}
-              className="w-full p-2 border-2 rounded-xl"
-            />
-            <input
-              placeholder="Storage"
-              {...register("storage")}
-              className="w-full p-2 border-2 rounded-xl"
-            />
-            <input
-              placeholder="Condition"
-              {...register("condition")}
-              className="w-full p-2 border-2 rounded-xl"
-            />
-            <input
-              placeholder="Warranty"
-              {...register("warranty")}
-              className="w-full p-2 border-2 rounded-xl"
-            />
+            <div className="grid grid-cols-3 gap-4">
+              <input
+                placeholder="Brand"
+                {...register("brand")}
+                className="w-full p-2 border-2 rounded"
+              />
+              <input
+                placeholder="Model"
+                {...register("model")}
+                className="w-full p-2 border-2 rounded"
+              />
+              <input
+                placeholder="Storage"
+                {...register("storage")}
+                className="w-full p-2 border-2 rounded"
+              />
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <input
+                placeholder="Condition"
+                {...register("condition")}
+                className="w-full p-2 border-2 rounded"
+              />
+              <input
+                placeholder="Warranty"
+                {...register("warranty")}
+                className="w-full p-2 border-2 rounded"
+              />
+            </div>
           </>
         )}
-
         {category === "fashion" && (
           <>
-            <input
-              placeholder="Brand"
-              {...register("brand")}
-              className="w-full p-2 border-2 rounded-xl"
-            />
-            <input
-              placeholder="Size"
-              {...register("size")}
-              className="w-full p-2 border-2 rounded-xl"
-            />
-            <input
-              placeholder="Material"
-              {...register("material")}
-              className="w-full p-2 border-2 rounded-xl"
-            />
-            <input
-              placeholder="Gender"
-              {...register("gender")}
-              className="w-full p-2 border-2 rounded-xl"
-            />
-            <input
-              placeholder="Color"
-              {...register("color")}
-              className="w-full p-2 border-2 rounded-xl"
-            />
+            <div className="grid grid-cols-2 gap-4">
+              <input
+                placeholder="Brand"
+                {...register("brand")}
+                className="w-full p-2 border-2 rounded"
+              />
+              <input
+                placeholder="Size"
+                {...register("size")}
+                className="w-full p-2 border-2 rounded"
+              />
+            </div>
+
+            <div className="grid grid-cols-3 gap-4">
+              <input
+                placeholder="Material"
+                {...register("material")}
+                className="w-full p-2 border-2 rounded"
+              />
+              <input
+                placeholder="Gender"
+                {...register("gender")}
+                className="w-full p-2 border-2 rounded"
+              />
+              <input
+                placeholder="Color"
+                {...register("color")}
+                className="w-full p-2 border-2 rounded"
+              />
+            </div>
           </>
         )}
-
         {category === "real-estate" && (
           <>
-            <input
-              type="number"
-              placeholder="Rooms"
-              {...register("rooms")}
-              className="w-full p-2 border-2 rounded-xl"
-            />
-            <input
-              type="number"
-              placeholder="Bathrooms"
-              {...register("bathrooms")}
-              className="w-full p-2 border-2 rounded-xl"
-            />
-            <label className="flex items-center gap-2">
-              <input type="checkbox" {...register("furnished")} />
-              Furnished
-            </label>
-            <input
-              placeholder="Payment Term"
-              {...register("paymentTerm")}
-              className="w-full p-2 border-2 rounded-xl"
-            />
-            <label className="flex items-center gap-2">
-              <input type="checkbox" {...register("hasParking")} />
-              Has Parking
-            </label>
+            <div className="grid grid-cols-3 gap-4">
+              <input
+                type="number"
+                placeholder="Rooms"
+                {...register("rooms")}
+                className="w-full p-2 border-2 rounded"
+              />
+              <input
+                type="number"
+                placeholder="Bathrooms"
+                {...register("bathrooms")}
+                className="w-full p-2 border-2 rounded"
+              />
+
+              <input
+                placeholder="Payment Term"
+                {...register("paymentTerm")}
+                className="w-full p-2 border-2 rounded"
+              />
+            </div>
+
+            <div className="grid grid-cols-2">
+              <label className="flex items-center gap-2">
+                <input type="checkbox" {...register("hasParking")} />
+                Has Parking
+              </label>
+
+              <label className="flex items-center gap-2">
+                <input type="checkbox" {...register("furnished")} />
+                Furnished
+              </label>
+            </div>
           </>
         )}
-
         {category === "food" && (
           <>
-            <input
-              placeholder="Type"
-              {...register("type")}
-              className="w-full p-2 border-2 rounded-xl"
-            />
-            <input
-              placeholder="Quantity"
-              {...register("quantity")}
-              className="w-full p-2 border-2 rounded-xl"
-            />
-            <input
-              type="date"
-              {...register("expiry")}
-              className="w-full p-2 border-2 rounded-xl"
-            />
-            <input
-              placeholder="Origin"
-              {...register("origin")}
-              className="w-full p-2 border-2 rounded-xl"
-            />
+            <div className="grid grid-cols-2 gap-4">
+              <input
+                placeholder="Type"
+                {...register("type")}
+                className="w-full p-2 border-2 rounded"
+              />
+              <input
+                placeholder="Quantity"
+                {...register("quantity")}
+                className="w-full p-2 border-2 rounded"
+              />
+            </div>
+
+            <div className=" grid grid-cols-2 gap-4">
+              <input
+                type="date"
+                {...register("expiry")}
+                className="w-full p-2 border-2 rounded"
+              />
+              <input
+                placeholder="Origin"
+                {...register("origin")}
+                className="w-full p-2 border-2 rounded"
+              />
+            </div>
+
             <label className="flex items-center gap-2">
               <input type="checkbox" {...register("packaged")} />
               Packaged
             </label>
           </>
         )}
-
+        ;
         {/*    
         <div className="text-xl flex flex-col">
           <label className="mb-1 text-sm text-gray-600">Upload Images</label>
@@ -331,13 +346,12 @@ const EditAddPage = () => {
             <p className="text-red-500 text-sm">{errors.images.message}</p>
           )}
         </div> */}
-
         <button
           type="submit"
           disabled={isSubmitting}
-          className="bg-blue-600 text-white py-2 px-6 rounded hover:bg-blue-700"
+          className="bg-[#4BBB1A] text-white py-2 px-6 rounded w-50"
         >
-          {isSubmitting ? "Submitting..." : "Submit Ad"}
+          {isSubmitting ? "Submitting..." : "Submit"}
         </button>
       </form>
     </div>

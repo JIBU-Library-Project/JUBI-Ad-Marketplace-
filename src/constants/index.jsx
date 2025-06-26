@@ -1,4 +1,7 @@
+import { BiLayer, BiLogoCreativeCommons, BiSolidWidget } from "react-icons/bi";
 import { FaHome } from "react-icons/fa";
+import { LiaEditSolid } from "react-icons/lia";
+import { RiAdvertisementFill } from "react-icons/ri";
 
 const K = {
   NAVLINKS: [
@@ -8,18 +11,17 @@ const K = {
       path: "/dashboard",
     },
     {
-      icon: <FaHome />,
+      icon: <BiLayer />,
       text: "All Adverts",
       path: "/dashboard/my-ads",
     },
     {
-      icon: <FaHome />,
+      icon: <BiSolidWidget />,
       text: "Create Advert",
       path: "/dashboard/create-ad",
     },
+
     {
-      icon: <FaHome />,
-      text: "Edit Ad",
       path: "/dashboard/ads/:id",
     },
   ],
