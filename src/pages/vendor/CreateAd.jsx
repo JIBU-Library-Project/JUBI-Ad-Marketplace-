@@ -33,6 +33,7 @@ const CreateAd = () => {
     payload.append("location", data.location);
     payload.append("category", data.category);
     payload.append("files", data.images[0]);
+    console.log(data.images)
 
     if (data.category.toLowerCase() == "electronics") {
       payload.append("brand", data.brand);

@@ -6,6 +6,8 @@ const AdCard = ({
   onEdit,
   onDelete,
 }) => {
+
+  
   const navigate = useNavigate();
 
 
@@ -18,12 +20,13 @@ const AdCard = ({
     navigate(`/dashboard/ads/${_id}/edit`);
   };
 
-  const handleDelete = (e) => {
-    e.stopPropagation(); 
-    if (window.confirm("Are you sure you want to delete this ad?")) {
-      onDelete?.(_id);
-    }
-  };
+ const handleDelete = async (e) => {
+  e.stopPropagation(); 
+  if (window.confirm("Are you sure you want to delete this ad?")) {
+    await onDelete?.(_id);    
+    window.location.reload(); 
+  }
+};
 
   const handleNavigate = () => {
     navigate(`/ads/${_id}`);
