@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { apiFetchAdverts } from "../services/adverts";
 import { toast } from "react-toastify";
 
-function NonUserAds() {
+function LandingAds() {
   const [ads, setAds] = useState([]);
   const navigate = useNavigate();
 
@@ -29,7 +29,7 @@ function NonUserAds() {
 
   const handleViewMore = () => {
     toast("Login to see more Ads");
-    navigate("/login");
+    navigate("/ads");
   };
 
   return (
@@ -40,7 +40,8 @@ function NonUserAds() {
         {ads.map((ad) => (
           <div
             key={ad._id}
-            onClick={() => navigate("/login")}
+              
+            onClick={() => navigate(`/ads/${ad._id}`)}
             className="flex bg-white shadow hover:shadow-lg transition hover:scale-[1.01] overflow-hidden h-44 cursor-pointer border border-gray-400 rounded-2xl"
           >
             <img
@@ -58,9 +59,9 @@ function NonUserAds() {
                   Category: {ad.category}
                 </p>
               </div>
-              <div className="mt-3 text-sm text-blue-600 hover:text-blue-800 w-fit">
-                View Details
-              </div>
+             <button>
+              
+             </button>
             </div>
           </div>
         ))}
@@ -77,4 +78,4 @@ function NonUserAds() {
   );
 }
 
-export default NonUserAds;
+export default LandingAds;

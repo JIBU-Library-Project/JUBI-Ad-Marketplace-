@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import SafetyTipsCard from "../../components/SafetyTipsCard";
 import { apiDeleteAdvert, apiSingleVendorAds } from "../../services/adverts";
 import { toast } from "react-toastify"; // uncommented
+import VendorSafety from "../../components/VendorSafety";
 
 const categories = [
   "Electronics",
@@ -35,12 +36,13 @@ function VendorAdsPage() {
   }, []);
 
   const filteredAds = myAds.filter((ad) => {
-    const matchTitle = ad.title.toLowerCase().includes(query.toLowerCase());
-    const matchCategory = activeCategory
-      ? ad.category === activeCategory
-      : true;
-    return matchTitle && matchCategory;
-  });
+  const titleMatch = ad.title?.toLowerCase().includes(query.toLowerCase());
+  const categoryMatch = activeCategory
+    ? ad.category?.toLowerCase() === activeCategory.toLowerCase()
+    : true;
+  return titleMatch && categoryMatch;
+});
+
 
   const handleDelete = async (id) => {
     try {
@@ -57,7 +59,7 @@ function VendorAdsPage() {
 
   return (
     <div className="md:ml-64 ml-0 pt-16 px-4 max-w-7xl mx-auto py-10">
-      <h1 className="text-2xl font-bold mb-8">📢 My Posted Ads</h1>
+      <h1 className="text-2xl font-bold mb-8">Your Advert Listings</h1>
 
       <div className="flex flex-col md:flex-row gap-8">
         {/* Left Section: Ads + Search */}
@@ -144,7 +146,7 @@ function VendorAdsPage() {
                         onClick={() => navigate(`/dashboard/ads/${ad._id}`)}
                         className="px-4 py-1.5 bg-blue-100 text-blue-700 font-medium rounded hover:bg-blue-200 text-sm"
                       >
-                        👁 View
+                        View
                       </button>
                       <button
                         onClick={() =>
@@ -152,13 +154,13 @@ function VendorAdsPage() {
                         }
                         className="px-4 py-1.5 bg-yellow-100 text-yellow-800 font-medium rounded hover:bg-yellow-200 text-sm"
                       >
-                        ✏️ Edit
+                         Edit
                       </button>
                       <button
                         onClick={() => handleDelete(ad._id)}
                         className="px-4 py-1.5 bg-red-100 text-red-700 font-medium rounded hover:bg-red-200 text-sm"
                       >
-                        🗑 Delete
+                         Delete
                       </button>
                     </div>
                   </div>
@@ -169,9 +171,9 @@ function VendorAdsPage() {
         </div>
 
         {/* Right Section: Safety Tips */}
-        <div className="md:w-1/3 w-full space-y-6">
+        <div className="md:w-1/3 w-full space-y-6 ">
           <div className="border border-gray-300 bg-white p-6 rounded shadow-md">
-            <SafetyTipsCard />
+           <VendorSafety/>
           </div>
         </div>
       </div>

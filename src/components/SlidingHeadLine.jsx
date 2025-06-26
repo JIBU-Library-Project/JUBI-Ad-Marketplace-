@@ -25,7 +25,7 @@ const SlidingHeadline = () => {
 
   return (
     <div className="pt-5 pb-5">
-      <p className="text-3xl md:text-4xl font-bold text-center overflow-hidden">
+      <p className="text-3xl md:text-4xl font-thin text-center overflow-hidden">
         <span
           className={`block transition-all duration-500 ease-in-out transform ${
             fade ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-3"

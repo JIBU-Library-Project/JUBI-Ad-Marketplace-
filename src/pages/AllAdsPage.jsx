@@ -8,8 +8,8 @@ import { toast } from "react-toastify";
 
 const categories = [
   "Electronics",
-  "Real Estate",
-  "Food & Groceries",
+  "Real-Estate",
+  "Food",
   "Fashion",
 ];
 
@@ -118,10 +118,10 @@ useEffect(() => {
 
           {/* Right Section: Safety + Owner Ads */}
           <div className="md:w-1/3 w-full space-y-6">
-            <div className="border border-gray-400 shadow-2xl bg-white p-6">
+            <div className="border relative h-70 border-gray-400 shadow-2xl bg-white p-6">
               <SafetyTipsCard />
             </div>
-            <div className="border border-gray-400 shadow-2xl bg-white p-6">
+            <div className="h-70 border border-gray-400 shadow-2xl bg-white p-6 objec">
               <OwnerAds />
             </div>
           </div>

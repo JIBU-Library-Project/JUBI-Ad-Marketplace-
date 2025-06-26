@@ -1,10 +1,17 @@
 import { FaUser, FaUserPlus, FaPlus, FaSignOutAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import SearchBar from "./SearchBar";
+
 import logo from "../assets/jubimarklogo.png";
+import { toast } from "react-toastify";
 
 const Navbar = ({ className = "", isFixed = true }) => {
   const navigate = useNavigate();
+
+
+  const handleClick = () =>{
+    toast("Login to post an Ad")
+    navigate("/login")
+  }
   return (
     <>
       <div
@@ -22,16 +29,13 @@ const Navbar = ({ className = "", isFixed = true }) => {
               </div>
             </button>
 
-            {/* Search */}
-            <div className="hidden lg:flex flex-1 mx-6 justify-center">
-              <SearchBar className="flex flex-wrap" />
-            </div>
+        
 
             {/* Right Section */}
             <div className="flex items-center gap-6 text-[#08ae5e] text-sm">
               <>
                 <button
-                  onClick={() => navigate("/login")}
+                  onClick={handleClick}
                   className="border rounded-[10px] flex flex-col items-center hover:bg-[#1b1a0f] hover:text-white p-1 pr-2 pl-2"
                 >
                   <span className="mt-1 flex gap-x-1">
@@ -90,7 +94,7 @@ const Navbar = ({ className = "", isFixed = true }) => {
           </div>
 
           <div className="w-full mt-2">
-            <SearchBar className="w-full" />
+        
           </div>
         </nav>
       </div>

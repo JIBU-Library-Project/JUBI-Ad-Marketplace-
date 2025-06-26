@@ -3,14 +3,15 @@ import K from "../constants";
 import { NavLink, useNavigate } from "react-router-dom";
 import { FaSignOutAlt, FaBars, FaTimes } from "react-icons/fa";
 import VendorHeader from "./Protected/VendorHeader";
+import { toast } from "react-toastify";
 
 function SideBar() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleLogout = () => {
-    localStorage.removeItem("accessToken")
-    alert("Logged out successfully!");
+    localStorage.removeItem("accessToken");
+    toast("Logged out successfully!");
     navigate("/login");
   };
 

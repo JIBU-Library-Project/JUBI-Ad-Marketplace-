@@ -1,8 +1,8 @@
 import { FaSignOutAlt, FaUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/jubimarklogo.png";
-import SearchBar from "../SearchBar";
 import { getUserFromToken } from "../../services/utils";
+import { toast } from "react-toastify";
 
 
 const UserNavbar = ({ className = "" }) => {
@@ -14,7 +14,7 @@ const user = getUserFromToken();
  
   const handleLogout = () => {
   localStorage.removeItem("accessToken")
-    alert("You've logged out successfully");
+    toast.success("You've logged out successfully");
     navigate("/login");
   };
 

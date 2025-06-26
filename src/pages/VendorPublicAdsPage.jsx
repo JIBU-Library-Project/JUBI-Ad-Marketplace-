@@ -118,8 +118,10 @@ function VendorPublicAdsPage() {
               </div>
             )}
 
-            <SafetyTipsCard />
-            <OwnerAds />
+            <div className="h-70 over">
+              <SafetyTipsCard />
+         
+            </div>
           </div>
         </div>
       </div>
