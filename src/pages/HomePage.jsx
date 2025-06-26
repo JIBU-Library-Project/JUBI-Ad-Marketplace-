@@ -74,14 +74,13 @@ function HomePage() {
             <div className="relative z-20 flex items-center justify-center w-full h-full px-4 py-12 introheader">
               <div className="text-center text-white space-y-4">
                 <h1 className="text-4xl md:text-6xl lg:text-8xl font-extrabold leading-tight">
-                  Get{" "}
-                  <em className="text-yellow-400">Noticed.</em>
+                 The Smarter Way to Get <em className="text-yellow-400">Noticed</em>
                 </h1>
 
                 <SlidingHeadline />
 
                 <button
-                  className="mt-4 px-6 py-2 p-  bg-green-600 text-white rounded-full font-bold text-sm hover:bg-pink-700 transition "
+                  className="mt-4 px-6 py-2 p-8  bg-green-600 text-white rounded-full font-bold text-sm hover:bg-pink-700 transition "
                   onClick={handleViewMore}
                 >
                   Start Advertising

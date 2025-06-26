@@ -17,7 +17,12 @@ const VendorProfileCard = () => {
       <p className="text-sm text-gray-700">Phone: {phone}</p>
       <button
         className="mt-4 bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700"
-        onClick={() => window.open(`https://wa.me/${phone}`, "_blank")}
+        onClick={() => {
+          const message = `Hi ${name}, I'm interested in one of your ads on the platform. Is it still available?`;
+          const encodedMessage = encodeURIComponent(message);
+          const whatsappUrl = `https://wa.me/${phone}?text=${encodedMessage}`;
+          window.open(whatsappUrl, "_blank");
+        }}
       >
         Message on WhatsApp
       </button>
